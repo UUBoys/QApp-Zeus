@@ -1,0 +1,84 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
+}
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+  schemas = ["qapp_zeus"]
+}
+
+model Establishment {
+  id          Int     @id @default(autoincrement())
+  name        String
+  description String?
+  image       String?
+  street      String
+  city        String
+  country     String
+  users       Moderators[]
+  events      Event[]
+  @@schema("qapp_zeus")
+}
+
+model Moderators {
+  user_id Int @id @unique
+  role    Role
+  establishment_id Int
+  establishment    Establishment @relation(fields: [establishment_id], references: [id])
+  @@schema("qapp_zeus")
+}
+
+model Event {
+  id              Int           @id @default(autoincrement())
+  name            String
+  description     String?
+  date            DateTime
+  image           String?
+  price           Float
+  establishmentId Int
+  maximumCapacity Int
+  establishment   Establishment @relation(fields: [establishmentId], references: [id])
+  Ticket          Ticket[]
+  @@schema("qapp_zeus")
+}
+
+model Credits {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  amount    Int
+  createdAt DateTime @default(now())
+  @@schema("qapp_zeus")
+}
+
+model CreditHistory {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  changedAmount    String
+  origin    String
+  changedAt DateTime @default(now())
+  @@schema("qapp_zeus")
+}
+
+model Ticket {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  eventId   Int
+  revoked   Boolean
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  event     Event    @relation(fields: [eventId], references: [id])
+  @@schema("qapp_zeus")
+}
+
+enum Role {
+  USER
+  MANAGER
+  DJ
+  ADMIN
+
+  @@schema("qapp_zeus")
+}

@@ -13,6 +13,7 @@ datasource db {
 
 model Establishment {
   id          Int     @id @default(autoincrement())
+  ownerId     Int
   name        String
   description String?
   image       String?
@@ -33,7 +34,7 @@ model Moderators {
 }
 
 model Event {
-  id              Int           @id @default(autoincrement())
+  uuid            String           @id @default(uuid())
   name            String
   description     String?
   date            DateTime
@@ -46,31 +47,16 @@ model Event {
   @@schema("qapp_zeus")
 }
 
-model Credits {
-  id        Int      @id @default(autoincrement())
-  userId    Int
-  amount    Int
-  createdAt DateTime @default(now())
-  @@schema("qapp_zeus")
-}
-
-model CreditHistory {
-  id        Int      @id @default(autoincrement())
-  userId    Int
-  changedAmount    String
-  origin    String
-  changedAt DateTime @default(now())
-  @@schema("qapp_zeus")
-}
-
 model Ticket {
-  id        Int      @id @default(autoincrement())
+  uuid      String      @id @default(uuid())
   userId    Int
-  eventId   Int
+  eventId   String
   revoked   Boolean
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  event     Event    @relation(fields: [eventId], references: [id])
+  event     Event    @relation(fields: [eventId], references: [uuid])
+
+  @@unique([userId, eventId])
   @@schema("qapp_zeus")
 }
 

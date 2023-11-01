@@ -84,9 +84,9 @@ export class Establishment extends Message<Establishment> {
  */
 export class Event extends Message<Event> {
   /**
-   * @generated from field: int32 id = 1;
+   * @generated from field: string id = 1;
    */
-  id = 0;
+  id = "";
 
   /**
    * @generated from field: string name = 2;
@@ -99,27 +99,32 @@ export class Event extends Message<Event> {
   description?: string;
 
   /**
-   * @generated from field: string date = 4;
+   * @generated from field: string start_date = 4;
    */
-  date = "";
+  startDate = "";
 
   /**
-   * @generated from field: optional string image = 5;
+   * @generated from field: string end_data = 5;
+   */
+  endData = "";
+
+  /**
+   * @generated from field: optional string image = 6;
    */
   image?: string;
 
   /**
-   * @generated from field: float price = 6;
+   * @generated from field: float price = 7;
    */
   price = 0;
 
   /**
-   * @generated from field: int32 establishmentId = 7;
+   * @generated from field: int32 establishmentId = 8;
    */
   establishmentId = 0;
 
   /**
-   * @generated from field: int32 maximumCapacity = 8;
+   * @generated from field: int32 maximumCapacity = 9;
    */
   maximumCapacity = 0;
 
@@ -131,14 +136,15 @@ export class Event extends Message<Event> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "com.qapp.zeus.Event";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
-    { no: 4, name: "date", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "image", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
-    { no: 6, name: "price", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
-    { no: 7, name: "establishmentId", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 8, name: "maximumCapacity", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "start_date", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "end_data", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "image", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 7, name: "price", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
+    { no: 8, name: "establishmentId", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 9, name: "maximumCapacity", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Event {
@@ -155,6 +161,61 @@ export class Event extends Message<Event> {
 
   static equals(a: Event | PlainMessage<Event> | undefined, b: Event | PlainMessage<Event> | undefined): boolean {
     return proto3.util.equals(Event, a, b);
+  }
+}
+
+/**
+ * @generated from message com.qapp.zeus.Ticket
+ */
+export class Ticket extends Message<Ticket> {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id = "";
+
+  /**
+   * @generated from field: int32 user_id = 2;
+   */
+  userId = 0;
+
+  /**
+   * @generated from field: string event_id = 3;
+   */
+  eventId = "";
+
+  /**
+   * @generated from field: bool revoked = 4;
+   */
+  revoked = false;
+
+  constructor(data?: PartialMessage<Ticket>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "com.qapp.zeus.Ticket";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "user_id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "event_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "revoked", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Ticket {
+    return new Ticket().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Ticket {
+    return new Ticket().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Ticket {
+    return new Ticket().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Ticket | PlainMessage<Ticket> | undefined, b: Ticket | PlainMessage<Ticket> | undefined): boolean {
+    return proto3.util.equals(Ticket, a, b);
   }
 }
 
@@ -431,27 +492,32 @@ export class CreateEventRequest extends Message<CreateEventRequest> {
   description?: string;
 
   /**
-   * @generated from field: string date = 3;
+   * @generated from field: string start_date = 3;
    */
-  date = "";
+  startDate = "";
 
   /**
-   * @generated from field: optional string image = 4;
+   * @generated from field: string end_data = 4;
+   */
+  endData = "";
+
+  /**
+   * @generated from field: optional string image = 5;
    */
   image?: string;
 
   /**
-   * @generated from field: float price = 5;
+   * @generated from field: float price = 6;
    */
   price = 0;
 
   /**
-   * @generated from field: int32 establishmentId = 6;
+   * @generated from field: int32 establishmentId = 7;
    */
   establishmentId = 0;
 
   /**
-   * @generated from field: int32 maximumCapacity = 7;
+   * @generated from field: int32 maximumCapacity = 8;
    */
   maximumCapacity = 0;
 
@@ -465,11 +531,12 @@ export class CreateEventRequest extends Message<CreateEventRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
-    { no: 3, name: "date", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "image", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
-    { no: 5, name: "price", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
-    { no: 6, name: "establishmentId", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 7, name: "maximumCapacity", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "start_date", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "end_data", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "image", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 6, name: "price", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
+    { no: 7, name: "establishmentId", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 8, name: "maximumCapacity", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateEventRequest {

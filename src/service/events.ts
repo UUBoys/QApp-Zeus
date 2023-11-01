@@ -27,19 +27,22 @@ const getEvent = async (uuid: string) => {
 const createEvent = async (
   name: string,
   establishmentId: number,
-  date: Date,
+  start_date: Date,
+  end_date: Date,
   price: number,
   maximumCapacity: number,
   description?: string,
   image?: string
 ) => {
-  const event = await prisma.event.create({
+  const event = await prisma.event
+    .create({
       data: {
         name,
         description,
         establishmentId,
         image,
-        date,
+        start_date,
+        end_date,
         price,
         maximumCapacity,
       },
@@ -52,7 +55,7 @@ const createEvent = async (
 };
 
 export default {
-    getEvents,
-    getEvent,
-    createEvent,
+  getEvents,
+  getEvent,
+  createEvent,
 } as const;

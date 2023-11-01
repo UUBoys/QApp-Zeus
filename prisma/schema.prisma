@@ -2,17 +2,18 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["multiSchema"]
 }
+
 datasource db {
   provider = "postgresql"
-  url = env("DATABASE_URL")
-  schemas = ["qapp_zeus"]
+  url      = env("DATABASE_URL")
+  schemas  = ["qapp_zeus"]
 }
 
 model Establishment {
-  id          Int     @id @default(autoincrement())
+  id          Int          @id @default(autoincrement())
   ownerId     Int
   name        String
   description String?
@@ -22,33 +23,37 @@ model Establishment {
   country     String
   users       Moderators[]
   events      Event[]
+
   @@schema("qapp_zeus")
 }
 
 model Moderators {
-  user_id Int @id @unique
-  role    Role
+  user_id          Int           @id @unique
+  role             Role
   establishment_id Int
   establishment    Establishment @relation(fields: [establishment_id], references: [id])
+
   @@schema("qapp_zeus")
 }
 
 model Event {
-  uuid            String           @id @default(uuid())
+  uuid            String        @id @default(uuid())
   name            String
   description     String?
-  date            DateTime
+  start_date      DateTime
+  end_date        DateTime
   image           String?
   price           Float
   establishmentId Int
   maximumCapacity Int
   establishment   Establishment @relation(fields: [establishmentId], references: [id])
   Ticket          Ticket[]
+
   @@schema("qapp_zeus")
 }
 
 model Ticket {
-  uuid      String      @id @default(uuid())
+  uuid      String   @id @default(uuid())
   userId    Int
   eventId   String
   revoked   Boolean

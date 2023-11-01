@@ -62,7 +62,7 @@ export default (router: ConnectRouter) => {
             uuid: e.uuid,
             name: e.name,
             description: e.description ?? undefined,
-            establishmentId: e.establishmentId,
+            establishment_id: e.establishmentId,
             image: e.image ?? undefined,
             start_date: e.start_date.toISOString(),
             end_date: e.end_date.toISOString(),

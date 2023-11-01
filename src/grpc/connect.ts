@@ -94,10 +94,10 @@ export default (router: ConnectRouter) => {
       );
 
       return {
-        uuid: event.uuid,
+        id: event.uuid,
         name: event.name,
         description: event.description ?? undefined,
-        establishmentId: event.establishmentId,
+        establishment_id: event.establishmentId,
         image: event.image ?? undefined,
         start_date: event.start_date.toISOString(),
         end_data: event.end_date.toISOString(),

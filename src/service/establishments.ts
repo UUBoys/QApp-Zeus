@@ -92,8 +92,10 @@ const updateEstablishment = async (
     // Check if updater is owner
     const updater = await prisma.moderators.findUnique({
         where: {
-            establishment_id: establishment_id,
-            user_id: updater_id,
+            user_id_establishment_id: {
+                user_id: updater_id,
+                establishment_id: establishment_id,
+            }
         },
     }).catch((e) => {
         logger.error(e);
@@ -143,8 +145,10 @@ const setEstablishmentRole = async (
   const updater = await prisma.moderators
     .findUnique({
       where: {
-        establishment_id: establishmentId,
-        user_id: updater_id,
+        user_id_establishment_id: {
+          user_id: updater_id,
+          establishment_id: establishmentId,
+        },
         role: "MANAGER",
       },
     })
@@ -163,8 +167,10 @@ const setEstablishmentRole = async (
   return await prisma.moderators
     .upsert({
       where: {
-        user_id: userId,
-        establishment_id: establishmentId,
+        user_id_establishment_id: {
+          user_id: userId,
+          establishment_id: establishmentId,
+        },
       },
       create: {
         user_id: userId,

@@ -29,7 +29,7 @@ model Establishment {
 }
 
 model Moderators {
-  user_id          Int           @id
+  user_id          Int
   role             Role
   establishment_id Int
   establishment    Establishment @relation(fields: [establishment_id], references: [id])

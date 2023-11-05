@@ -69,8 +69,10 @@ const updateEvent = async (
     //Check if user can update
     const updater = await prisma.moderators.findUnique({
         where: {
-            establishment_id: establishment_id,
-            user_id: updater_id,
+            user_id_establishment_id: {
+                user_id: updater_id,
+                establishment_id: establishment_id,
+            }
         },
     }).catch((e) => {
         logger.error(e);

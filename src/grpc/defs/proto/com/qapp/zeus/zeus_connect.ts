@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreateEstablishmentRequest, CreateEventRequest, Establishment, Event, GetEstablishmentsRequest, GetEstablishmentsResponse, GetEventsRequest, GetEventsResponse, PurchaseTicketRequest, RefundTicketRequest, RefundTicketResponse, SetEstablishmentRoleRequest, Ticket } from "./zeus_pb.js";
+import { CreateEstablishmentRequest, CreateEventRequest, Establishment, Event, GetEstablishmentRequest, GetEstablishmentsRequest, GetEstablishmentsResponse, GetEventsRequest, GetEventsResponse, PurchaseTicketRequest, RefundTicketRequest, RefundTicketResponse, SetEstablishmentRoleRequest, SetEstablishmentRoleResponse, Ticket, UpdateEstablishmentRequest, UpdateEventRequest } from "./zeus_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -72,7 +72,34 @@ export const Zeus = {
     setEstablishmentRole: {
       name: "SetEstablishmentRole",
       I: SetEstablishmentRoleRequest,
-      O: SetEstablishmentRoleRequest,
+      O: SetEstablishmentRoleResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc com.qapp.zeus.Zeus.UpdateEstablishment
+     */
+    updateEstablishment: {
+      name: "UpdateEstablishment",
+      I: UpdateEstablishmentRequest,
+      O: Establishment,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc com.qapp.zeus.Zeus.UpdateEvent
+     */
+    updateEvent: {
+      name: "UpdateEvent",
+      I: UpdateEventRequest,
+      O: Event,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc com.qapp.zeus.Zeus.GetEstablishment
+     */
+    getEstablishment: {
+      name: "GetEstablishment",
+      I: GetEstablishmentRequest,
+      O: Establishment,
       kind: MethodKind.Unary,
     },
   }

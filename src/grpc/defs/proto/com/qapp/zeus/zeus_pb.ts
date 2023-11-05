@@ -26,22 +26,27 @@ export class Establishment extends Message<Establishment> {
   description?: string;
 
   /**
-   * @generated from field: optional string image = 4;
+   * @generated from field: optional string profileImage = 4;
    */
-  image?: string;
+  profileImage?: string;
 
   /**
-   * @generated from field: string street = 5;
+   * @generated from field: optional string coverImage = 5;
+   */
+  coverImage?: string;
+
+  /**
+   * @generated from field: string street = 6;
    */
   street = "";
 
   /**
-   * @generated from field: string city = 6;
+   * @generated from field: string city = 7;
    */
   city = "";
 
   /**
-   * @generated from field: string country = 7;
+   * @generated from field: string country = 8;
    */
   country = "";
 
@@ -56,10 +61,11 @@ export class Establishment extends Message<Establishment> {
     { no: 1, name: "id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
-    { no: 4, name: "image", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
-    { no: 5, name: "street", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "city", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "country", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "profileImage", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 5, name: "coverImage", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 6, name: "street", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "city", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: "country", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Establishment {
@@ -104,9 +110,9 @@ export class Event extends Message<Event> {
   startDate = "";
 
   /**
-   * @generated from field: string end_data = 5;
+   * @generated from field: string end_date = 5;
    */
-  endData = "";
+  endDate = "";
 
   /**
    * @generated from field: optional string image = 6;
@@ -119,7 +125,7 @@ export class Event extends Message<Event> {
   price = 0;
 
   /**
-   * @generated from field: int32 establishmentId = 8;
+   * @generated from field: int32 establishment_id = 8;
    */
   establishmentId = 0;
 
@@ -140,10 +146,10 @@ export class Event extends Message<Event> {
     { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 4, name: "start_date", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "end_data", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "end_date", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "image", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 7, name: "price", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
-    { no: 8, name: "establishmentId", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 8, name: "establishment_id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 9, name: "maximumCapacity", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
@@ -282,6 +288,43 @@ export class GetEventsRequest extends Message<GetEventsRequest> {
 }
 
 /**
+ * @generated from message com.qapp.zeus.GetEstablishmentRequest
+ */
+export class GetEstablishmentRequest extends Message<GetEstablishmentRequest> {
+  /**
+   * @generated from field: int32 id = 1;
+   */
+  id = 0;
+
+  constructor(data?: PartialMessage<GetEstablishmentRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "com.qapp.zeus.GetEstablishmentRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetEstablishmentRequest {
+    return new GetEstablishmentRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetEstablishmentRequest {
+    return new GetEstablishmentRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetEstablishmentRequest {
+    return new GetEstablishmentRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetEstablishmentRequest | PlainMessage<GetEstablishmentRequest> | undefined, b: GetEstablishmentRequest | PlainMessage<GetEstablishmentRequest> | undefined): boolean {
+    return proto3.util.equals(GetEstablishmentRequest, a, b);
+  }
+}
+
+/**
  * @generated from message com.qapp.zeus.GetEstablishmentsResponse
  */
 export class GetEstablishmentsResponse extends Message<GetEstablishmentsResponse> {
@@ -333,27 +376,32 @@ export class CreateEstablishmentRequest extends Message<CreateEstablishmentReque
   description?: string;
 
   /**
-   * @generated from field: optional string image = 3;
+   * @generated from field: optional string profileImage = 3;
    */
-  image?: string;
+  profileImage?: string;
 
   /**
-   * @generated from field: string street = 4;
+   * @generated from field: optional string coverImage = 4;
+   */
+  coverImage?: string;
+
+  /**
+   * @generated from field: string street = 5;
    */
   street = "";
 
   /**
-   * @generated from field: string city = 5;
+   * @generated from field: string city = 6;
    */
   city = "";
 
   /**
-   * @generated from field: string country = 6;
+   * @generated from field: string country = 7;
    */
   country = "";
 
   /**
-   * @generated from field: int32 ownerId = 7;
+   * @generated from field: int32 ownerId = 8;
    */
   ownerId = 0;
 
@@ -367,11 +415,12 @@ export class CreateEstablishmentRequest extends Message<CreateEstablishmentReque
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
-    { no: 3, name: "image", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
-    { no: 4, name: "street", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "city", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "country", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "ownerId", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "profileImage", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 4, name: "coverImage", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 5, name: "street", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "city", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "country", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: "ownerId", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateEstablishmentRequest {
@@ -396,17 +445,22 @@ export class CreateEstablishmentRequest extends Message<CreateEstablishmentReque
  */
 export class SetEstablishmentRoleRequest extends Message<SetEstablishmentRoleRequest> {
   /**
-   * @generated from field: string establishmentId = 1;
+   * @generated from field: int32 updaterId = 1;
    */
-  establishmentId = "";
+  updaterId = 0;
 
   /**
-   * @generated from field: int32 userId = 2;
+   * @generated from field: int32 establishmentId = 2;
+   */
+  establishmentId = 0;
+
+  /**
+   * @generated from field: int32 userId = 3;
    */
   userId = 0;
 
   /**
-   * @generated from field: string role = 3;
+   * @generated from field: string role = 4;
    */
   role = "";
 
@@ -418,9 +472,10 @@ export class SetEstablishmentRoleRequest extends Message<SetEstablishmentRoleReq
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "com.qapp.zeus.SetEstablishmentRoleRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "establishmentId", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "userId", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 3, name: "role", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "updaterId", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "establishmentId", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "userId", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "role", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SetEstablishmentRoleRequest {
@@ -437,6 +492,55 @@ export class SetEstablishmentRoleRequest extends Message<SetEstablishmentRoleReq
 
   static equals(a: SetEstablishmentRoleRequest | PlainMessage<SetEstablishmentRoleRequest> | undefined, b: SetEstablishmentRoleRequest | PlainMessage<SetEstablishmentRoleRequest> | undefined): boolean {
     return proto3.util.equals(SetEstablishmentRoleRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message com.qapp.zeus.SetEstablishmentRoleResponse
+ */
+export class SetEstablishmentRoleResponse extends Message<SetEstablishmentRoleResponse> {
+  /**
+   * @generated from field: int32 establishmentId = 1;
+   */
+  establishmentId = 0;
+
+  /**
+   * @generated from field: int32 userId = 2;
+   */
+  userId = 0;
+
+  /**
+   * @generated from field: string role = 3;
+   */
+  role = "";
+
+  constructor(data?: PartialMessage<SetEstablishmentRoleResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "com.qapp.zeus.SetEstablishmentRoleResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "establishmentId", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "userId", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "role", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SetEstablishmentRoleResponse {
+    return new SetEstablishmentRoleResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SetEstablishmentRoleResponse {
+    return new SetEstablishmentRoleResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SetEstablishmentRoleResponse {
+    return new SetEstablishmentRoleResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SetEstablishmentRoleResponse | PlainMessage<SetEstablishmentRoleResponse> | undefined, b: SetEstablishmentRoleResponse | PlainMessage<SetEstablishmentRoleResponse> | undefined): boolean {
+    return proto3.util.equals(SetEstablishmentRoleResponse, a, b);
   }
 }
 
@@ -688,6 +792,182 @@ export class RefundTicketResponse extends Message<RefundTicketResponse> {
 
   static equals(a: RefundTicketResponse | PlainMessage<RefundTicketResponse> | undefined, b: RefundTicketResponse | PlainMessage<RefundTicketResponse> | undefined): boolean {
     return proto3.util.equals(RefundTicketResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message com.qapp.zeus.UpdateEstablishmentRequest
+ */
+export class UpdateEstablishmentRequest extends Message<UpdateEstablishmentRequest> {
+  /**
+   * @generated from field: int32 updater_id = 1;
+   */
+  updaterId = 0;
+
+  /**
+   * @generated from field: int32 id = 2;
+   */
+  id = 0;
+
+  /**
+   * @generated from field: optional string name = 3;
+   */
+  name?: string;
+
+  /**
+   * @generated from field: optional string description = 4;
+   */
+  description?: string;
+
+  /**
+   * @generated from field: optional string profileImage = 5;
+   */
+  profileImage?: string;
+
+  /**
+   * @generated from field: optional string coverImage = 6;
+   */
+  coverImage?: string;
+
+  /**
+   * @generated from field: optional string street = 7;
+   */
+  street?: string;
+
+  /**
+   * @generated from field: optional string city = 8;
+   */
+  city?: string;
+
+  /**
+   * @generated from field: optional string country = 9;
+   */
+  country?: string;
+
+  constructor(data?: PartialMessage<UpdateEstablishmentRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "com.qapp.zeus.UpdateEstablishmentRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "updater_id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 4, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 5, name: "profileImage", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 6, name: "coverImage", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 7, name: "street", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 8, name: "city", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 9, name: "country", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdateEstablishmentRequest {
+    return new UpdateEstablishmentRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UpdateEstablishmentRequest {
+    return new UpdateEstablishmentRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpdateEstablishmentRequest {
+    return new UpdateEstablishmentRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: UpdateEstablishmentRequest | PlainMessage<UpdateEstablishmentRequest> | undefined, b: UpdateEstablishmentRequest | PlainMessage<UpdateEstablishmentRequest> | undefined): boolean {
+    return proto3.util.equals(UpdateEstablishmentRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message com.qapp.zeus.UpdateEventRequest
+ */
+export class UpdateEventRequest extends Message<UpdateEventRequest> {
+  /**
+   * @generated from field: int32 updaterId = 1;
+   */
+  updaterId = 0;
+
+  /**
+   * @generated from field: int32 establishmentId = 2;
+   */
+  establishmentId = 0;
+
+  /**
+   * @generated from field: string uuid = 3;
+   */
+  uuid = "";
+
+  /**
+   * @generated from field: optional string name = 4;
+   */
+  name?: string;
+
+  /**
+   * @generated from field: optional string description = 5;
+   */
+  description?: string;
+
+  /**
+   * @generated from field: optional string start_date = 6;
+   */
+  startDate?: string;
+
+  /**
+   * @generated from field: optional string end_date = 7;
+   */
+  endDate?: string;
+
+  /**
+   * @generated from field: optional string image = 8;
+   */
+  image?: string;
+
+  /**
+   * @generated from field: optional float price = 9;
+   */
+  price?: number;
+
+  /**
+   * @generated from field: optional int32 maximumCapacity = 10;
+   */
+  maximumCapacity?: number;
+
+  constructor(data?: PartialMessage<UpdateEventRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "com.qapp.zeus.UpdateEventRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "updaterId", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "establishmentId", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "uuid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 5, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 6, name: "start_date", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 7, name: "end_date", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 8, name: "image", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 9, name: "price", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true },
+    { no: 10, name: "maximumCapacity", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdateEventRequest {
+    return new UpdateEventRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UpdateEventRequest {
+    return new UpdateEventRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpdateEventRequest {
+    return new UpdateEventRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: UpdateEventRequest | PlainMessage<UpdateEventRequest> | undefined, b: UpdateEventRequest | PlainMessage<UpdateEventRequest> | undefined): boolean {
+    return proto3.util.equals(UpdateEventRequest, a, b);
   }
 }
 

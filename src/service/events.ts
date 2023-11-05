@@ -54,8 +54,58 @@ const createEvent = async (
   return event;
 };
 
+const updateEvent = async (
+  updater_id: number,
+  establishment_id: number,
+  uuid: string,
+  name?: string,
+  description?: string,
+  start_date?: string,
+  end_date?: string,
+  image?: string,
+  price?: number,
+  maximumCapacity?: number
+) => {
+    //Check if user can update
+    const updater = await prisma.moderators.findUnique({
+        where: {
+            establishment_id: establishment_id,
+            user_id: updater_id,
+        },
+    }).catch((e) => {
+        logger.error(e);
+        throw new ConnectError("Internal prisma error", Code.Internal);
+    });
+
+    if(!updater || updater.role !== "MANAGER") {
+        throw new ConnectError("User not allowed to update event", Code.PermissionDenied);
+    }
+  
+    return await prisma.event.update({
+        where: {
+            uuid: uuid,
+        },
+        data: {
+            name: name,
+            description: description,
+            start_date: start_date ? new Date(start_date) : undefined,
+            end_date: end_date ? new Date(end_date) : undefined,
+            image: image,
+            price: price,
+            maximumCapacity: maximumCapacity,
+        },
+        }).catch((e) => {
+            if (e.code === "P2025") {
+                throw new ConnectError("Event not found", Code.NotFound);
+            }
+            logger.error(e);
+            throw new ConnectError("Internal prisma error", Code.Internal);
+        });
+};
+
 export default {
   getEvents,
   getEvent,
   createEvent,
+  updateEvent,
 } as const;

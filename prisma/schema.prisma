@@ -17,7 +17,8 @@ model Establishment {
   ownerId     Int
   name        String
   description String?
-  image       String?
+  profileImage       String?
+  coverImage         String?
   street      String
   city        String
   country     String
@@ -28,11 +29,12 @@ model Establishment {
 }
 
 model Moderators {
-  user_id          Int           @id @unique
+  user_id          Int           @id
   role             Role
   establishment_id Int
   establishment    Establishment @relation(fields: [establishment_id], references: [id])
 
+  @@unique([user_id, establishment_id])
   @@schema("qapp_zeus")
 }
 

@@ -26,6 +26,14 @@ const getEstablishment = async (id: number) => {
     });
 };
 
+const getEstablishmentForUser = async (userId: number) => {
+  return await prisma.establishment.findMany({
+    where: {
+      ownerId: userId,
+    },
+  });
+};
+
 const createEstablishment = async (
   ownerId: number,
   name: string,
@@ -176,6 +184,7 @@ const setEstablishmentRole = async (
 export default {
   getEstablishments,
   getEstablishment,
+  getEstablishmentForUser,
   createEstablishment,
   updateEstablishment,
   setEstablishmentRole,

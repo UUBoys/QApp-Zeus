@@ -214,5 +214,25 @@ export default (router: ConnectRouter) => {
         maximumCapacity: event.maximumCapacity,
       };
     },
+    async getEstablishmentForUser({ userId }) {
+      const establishments = await EstablishmentService.getEstablishmentForUser(
+        userId
+      );
+
+      return {
+        establishments: establishments.map((e) => {
+          return {
+            id: e.id,
+            name: e.name,
+            description: e.description ?? undefined,
+            street: e.street,
+            city: e.city,
+            country: e.country,
+            profileImage: e.profileImage ?? undefined,
+            coverImage: e.coverImage ?? undefined,
+          };
+        }),
+      };
+    },
   });
 };

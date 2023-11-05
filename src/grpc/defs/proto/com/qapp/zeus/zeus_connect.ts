@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreateEstablishmentRequest, CreateEventRequest, Establishment, Event, GetEstablishmentRequest, GetEstablishmentsRequest, GetEstablishmentsResponse, GetEventsRequest, GetEventsResponse, PurchaseTicketRequest, RefundTicketRequest, RefundTicketResponse, SetEstablishmentRoleRequest, SetEstablishmentRoleResponse, Ticket, UpdateEstablishmentRequest, UpdateEventRequest } from "./zeus_pb";
+import { CreateEstablishmentRequest, CreateEventRequest, Establishment, Event, GetEstablishmentRequest, GetEstablishmentsForUserRequest, GetEstablishmentsRequest, GetEstablishmentsResponse, GetEventsRequest, GetEventsResponse, PurchaseTicketRequest, RefundTicketRequest, RefundTicketResponse, SetEstablishmentRoleRequest, SetEstablishmentRoleResponse, Ticket, UpdateEstablishmentRequest, UpdateEventRequest } from "./zeus_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -100,6 +100,15 @@ export const Zeus = {
       name: "GetEstablishment",
       I: GetEstablishmentRequest,
       O: Establishment,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc com.qapp.zeus.Zeus.GetEstablishmentForUser
+     */
+    getEstablishmentForUser: {
+      name: "GetEstablishmentForUser",
+      I: GetEstablishmentsForUserRequest,
+      O: GetEstablishmentsResponse,
       kind: MethodKind.Unary,
     },
   }

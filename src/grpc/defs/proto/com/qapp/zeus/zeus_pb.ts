@@ -257,6 +257,43 @@ export class GetEstablishmentsRequest extends Message<GetEstablishmentsRequest> 
 }
 
 /**
+ * @generated from message com.qapp.zeus.GetEstablishmentsForUserRequest
+ */
+export class GetEstablishmentsForUserRequest extends Message<GetEstablishmentsForUserRequest> {
+  /**
+   * @generated from field: int32 userId = 1;
+   */
+  userId = 0;
+
+  constructor(data?: PartialMessage<GetEstablishmentsForUserRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "com.qapp.zeus.GetEstablishmentsForUserRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "userId", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetEstablishmentsForUserRequest {
+    return new GetEstablishmentsForUserRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetEstablishmentsForUserRequest {
+    return new GetEstablishmentsForUserRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetEstablishmentsForUserRequest {
+    return new GetEstablishmentsForUserRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetEstablishmentsForUserRequest | PlainMessage<GetEstablishmentsForUserRequest> | undefined, b: GetEstablishmentsForUserRequest | PlainMessage<GetEstablishmentsForUserRequest> | undefined): boolean {
+    return proto3.util.equals(GetEstablishmentsForUserRequest, a, b);
+  }
+}
+
+/**
  * @generated from message com.qapp.zeus.GetEventsRequest
  */
 export class GetEventsRequest extends Message<GetEventsRequest> {

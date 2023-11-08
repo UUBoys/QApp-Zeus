@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreateEstablishmentRequest, CreateEventRequest, Establishment, Event, GetEstablishmentRequest, GetEstablishmentsForUserRequest, GetEstablishmentsRequest, GetEstablishmentsResponse, GetEventsForEstablishmentRequest, GetEventsRequest, GetEventsResponse, PurchaseTicketRequest, RefundTicketRequest, RefundTicketResponse, SetEstablishmentRoleRequest, SetEstablishmentRoleResponse, TicketPurchaseResult, UpdateEstablishmentRequest, UpdateEventRequest } from "./zeus_pb.js";
+import { CreateEstablishmentRequest, CreateEventRequest, Establishment, Event, GetEstablishmentRequest, GetEstablishmentsForUserRequest, GetEstablishmentsRequest, GetEstablishmentsResponse, GetEventsForEstablishmentRequest, GetEventsRequest, GetEventsResponse, PurchaseTicketRequest, RefundTicketRequest, RefundTicketResponse, SetEstablishmentRoleRequest, SetEstablishmentRoleResponse, TicketPurchaseResult, UpdateEstablishmentRequest, UpdateEventRequest } from "./zeus_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**

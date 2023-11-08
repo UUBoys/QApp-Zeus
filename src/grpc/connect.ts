@@ -4,6 +4,14 @@ import EstablishmentService from "@src/service/establishments";
 import EventService from "@src/service/events";
 import { Establishment } from "@prisma/client";
 import logger from "@src/log/logger";
+import { com } from "@src/grpc/client/proto/com/qapp/hermes/hermes";
+import { credentials } from "@grpc/grpc-js";
+import { grpcToPromise } from "./utils/utils";
+
+const client = new com.qapp.hermes.CreditServiceClient(
+  process.env.HERMES_URL || "",
+  credentials.createSsl()
+);
 
 export default (router: ConnectRouter) => {
   router.service(Zeus, {
@@ -26,7 +34,9 @@ export default (router: ConnectRouter) => {
       };
     },
     async getEstablishment({ id }) {
-      const establishment = await EstablishmentService.getEstablishment(id) as Establishment;
+      const establishment = (await EstablishmentService.getEstablishment(
+        id
+      )) as Establishment;
 
       return {
         id: establishment.id,
@@ -40,21 +50,25 @@ export default (router: ConnectRouter) => {
       };
     },
     async getEventsForEstablishment({ establishmentId }) {
-      const events = await EventService.getEventsForEstablishment(establishmentId);
+      const events = await EventService.getEventsForEstablishment(
+        establishmentId
+      );
 
-      return {events: events.map((e) => {
-        return {
-          id: e.uuid,
-          name: e.name,
-          description: e.description ?? undefined,
-          establishmentId: e.establishmentId,
-          image: e.image ?? undefined,
-          startDate: e.start_date.toISOString(),
-          endDate: e.end_date.toISOString(),
-          price: e.price,
-          maximumCapacity: e.maximumCapacity,
-        };
-      })};
+      return {
+        events: events.map((e) => {
+          return {
+            id: e.uuid,
+            name: e.name,
+            description: e.description ?? undefined,
+            establishmentId: e.establishmentId,
+            image: e.image ?? undefined,
+            startDate: e.start_date.toISOString(),
+            endDate: e.end_date.toISOString(),
+            price: e.price,
+            maximumCapacity: e.maximumCapacity,
+          };
+        }),
+      };
     },
     async createEstablishment({
       name,
@@ -245,6 +259,27 @@ export default (router: ConnectRouter) => {
             coverImage: e.coverImage ?? undefined,
           };
         }),
+      };
+    },
+    async purchaseTicket({ userId, eventId, ticketId }) {
+      const ticketPurchaseRequest = new com.qapp.hermes.PurchaseRequest({
+        event_id: eventId,
+        user_id: userId,
+        ticket_id: ticketId,
+      });
+
+      const ticketPurchase =
+        await grpcToPromise<com.qapp.hermes.PurchaseTicketResponse>(
+          (callback) => {
+            client.Purchase(ticketPurchaseRequest, callback);
+          }
+        );
+
+      return {
+        eventId: eventId,
+        userId: ticketPurchase.creditOperation.user_id,
+        newBalance: ticketPurchase.creditOperation.new_balance,
+        id: ticketPurchase.Ticket.id,
       };
     },
   });

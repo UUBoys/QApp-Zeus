@@ -19,7 +19,7 @@
   "scripts": {
     "build": "npx tsc && tsc-alias",
     "start": "node dist/index.js",
-    "generate": "prisma generate && buf generate --path proto/com/qapp/zeus",
+    "generate": "prisma generate && buf generate --path proto/com/qapp",
     "dev": "cross-env NODE_ENV=development nodemon"
   },
   "repository": {
@@ -40,10 +40,12 @@
     "@connectrpc/connect-fastify": "^1.1.2",
     "@connectrpc/connect-node": "^1.1.2",
     "@connectrpc/protoc-gen-connect-es": "^1.1.2",
+    "@grpc/grpc-js": "^1.9.9",
     "@prisma/client": "^5.5.2",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "fastify": "^4.24.3",
+    "google-protobuf": "^3.21.2",
     "jsonwebtoken": "^9.0.2",
     "nodemon": "^3.0.1",
     "ts-node": "^10.9.1",
@@ -52,6 +54,7 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.20",
+    "@types/google-protobuf": "^3.15.10",
     "@types/jsonwebtoken": "^9.0.4",
     "@typescript-eslint/eslint-plugin": "^6.7.5",
     "cross-env": "7.0.3",

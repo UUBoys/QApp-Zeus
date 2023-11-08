@@ -171,13 +171,13 @@ export class Event extends Message<Event> {
 }
 
 /**
- * @generated from message com.qapp.zeus.Ticket
+ * @generated from message com.qapp.zeus.TicketPurchaseResult
  */
-export class Ticket extends Message<Ticket> {
+export class TicketPurchaseResult extends Message<TicketPurchaseResult> {
   /**
-   * @generated from field: string id = 1;
+   * @generated from field: int32 id = 1;
    */
-  id = "";
+  id = 0;
 
   /**
    * @generated from field: int32 user_id = 2;
@@ -185,43 +185,43 @@ export class Ticket extends Message<Ticket> {
   userId = 0;
 
   /**
-   * @generated from field: string event_id = 3;
+   * @generated from field: int32 event_id = 3;
    */
-  eventId = "";
+  eventId = 0;
 
   /**
-   * @generated from field: bool revoked = 4;
+   * @generated from field: float new_balance = 4;
    */
-  revoked = false;
+  newBalance = 0;
 
-  constructor(data?: PartialMessage<Ticket>) {
+  constructor(data?: PartialMessage<TicketPurchaseResult>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "com.qapp.zeus.Ticket";
+  static readonly typeName = "com.qapp.zeus.TicketPurchaseResult";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 2, name: "user_id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 3, name: "event_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "revoked", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: "event_id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "new_balance", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Ticket {
-    return new Ticket().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TicketPurchaseResult {
+    return new TicketPurchaseResult().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Ticket {
-    return new Ticket().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TicketPurchaseResult {
+    return new TicketPurchaseResult().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Ticket {
-    return new Ticket().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TicketPurchaseResult {
+    return new TicketPurchaseResult().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Ticket | PlainMessage<Ticket> | undefined, b: Ticket | PlainMessage<Ticket> | undefined): boolean {
-    return proto3.util.equals(Ticket, a, b);
+  static equals(a: TicketPurchaseResult | PlainMessage<TicketPurchaseResult> | undefined, b: TicketPurchaseResult | PlainMessage<TicketPurchaseResult> | undefined): boolean {
+    return proto3.util.equals(TicketPurchaseResult, a, b);
   }
 }
 
@@ -744,7 +744,12 @@ export class PurchaseTicketRequest extends Message<PurchaseTicketRequest> {
   eventId = 0;
 
   /**
-   * @generated from field: int32 userId = 2;
+   * @generated from field: int32 ticketId = 2;
+   */
+  ticketId = 0;
+
+  /**
+   * @generated from field: int32 userId = 3;
    */
   userId = 0;
 
@@ -757,7 +762,8 @@ export class PurchaseTicketRequest extends Message<PurchaseTicketRequest> {
   static readonly typeName = "com.qapp.zeus.PurchaseTicketRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "eventId", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 2, name: "userId", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "ticketId", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "userId", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PurchaseTicketRequest {

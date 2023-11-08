@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreateEstablishmentRequest, CreateEventRequest, Establishment, Event, GetEstablishmentRequest, GetEstablishmentsForUserRequest, GetEstablishmentsRequest, GetEstablishmentsResponse, GetEventsForEstablishmentRequest, GetEventsRequest, GetEventsResponse, PurchaseTicketRequest, RefundTicketRequest, RefundTicketResponse, SetEstablishmentRoleRequest, SetEstablishmentRoleResponse, Ticket, UpdateEstablishmentRequest, UpdateEventRequest } from "./zeus_pb";
+import { CreateEstablishmentRequest, CreateEventRequest, Establishment, Event, GetEstablishmentRequest, GetEstablishmentsForUserRequest, GetEstablishmentsRequest, GetEstablishmentsResponse, GetEventsForEstablishmentRequest, GetEventsRequest, GetEventsResponse, PurchaseTicketRequest, RefundTicketRequest, RefundTicketResponse, SetEstablishmentRoleRequest, SetEstablishmentRoleResponse, TicketPurchaseResult, UpdateEstablishmentRequest, UpdateEventRequest } from "./zeus_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -63,7 +63,7 @@ export const Zeus = {
     purchaseTicket: {
       name: "PurchaseTicket",
       I: PurchaseTicketRequest,
-      O: Ticket,
+      O: TicketPurchaseResult,
       kind: MethodKind.Unary,
     },
     /**

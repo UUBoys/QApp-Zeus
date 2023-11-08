@@ -6,3 +6,7 @@ plugins:
   - plugin: connect-es
     opt: target=ts
     out: src/grpc/defs
+  - plugin: ts
+    opt:
+      - ts_out=dist
+    out: src/grpc/client

@@ -26,6 +26,7 @@ async function main() {
   await server.register(fastifyConnectPlugin, {
     routes,
   });
+
   server.get("/", (_, reply) => {
     reply.type("text/plain");
     reply.send("Hello World!");

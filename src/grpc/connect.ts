@@ -2,8 +2,8 @@ import { Code, ConnectError, ConnectRouter } from "@connectrpc/connect";
 import { Zeus } from "./defs/proto/com/qapp/zeus/zeus_connect";
 import EstablishmentService from "@src/service/establishments";
 import EventService from "@src/service/events";
-import { prisma } from "@src/db/client";
 import { Establishment } from "@prisma/client";
+import logger from "@src/log/logger";
 
 export default (router: ConnectRouter) => {
   router.service(Zeus, {
@@ -26,11 +26,7 @@ export default (router: ConnectRouter) => {
       };
     },
     async getEstablishment({ id }) {
-      const establishment = (await prisma.establishment.findUnique({
-        where: {
-          id: id,
-        },
-      })) as Establishment;
+      const establishment = await EstablishmentService.getEstablishment(id) as Establishment;
 
       return {
         id: establishment.id,
@@ -42,6 +38,23 @@ export default (router: ConnectRouter) => {
         profileImage: establishment.profileImage ?? undefined,
         coverImage: establishment.coverImage ?? undefined,
       };
+    },
+    async getEventsForEstablishment({ establishmentId }) {
+      const events = await EventService.getEventsForEstablishment(establishmentId);
+
+      return {events: events.map((e) => {
+        return {
+          id: e.uuid,
+          name: e.name,
+          description: e.description ?? undefined,
+          establishment_id: e.establishmentId,
+          image: e.image ?? undefined,
+          start_date: e.start_date.toISOString(),
+          end_date: e.end_date.toISOString(),
+          price: e.price,
+          maximumCapacity: e.maximumCapacity,
+        };
+      })};
     },
     async createEstablishment({
       name,
@@ -82,13 +95,13 @@ export default (router: ConnectRouter) => {
       return {
         events: events.map((e) => {
           return {
-            uuid: e.uuid,
+            id: e.uuid,
             name: e.name,
             description: e.description ?? undefined,
-            establishment_id: e.establishmentId,
+            establishmentId: e.establishmentId,
             image: e.image ?? undefined,
-            start_date: e.start_date.toISOString(),
-            end_date: e.end_date.toISOString(),
+            startDate: e.start_date.toISOString(),
+            endDate: e.end_date.toISOString(),
             price: e.price,
             maximumCapacity: e.maximumCapacity,
           };
@@ -203,7 +216,7 @@ export default (router: ConnectRouter) => {
       );
 
       return {
-        uuid: event.uuid,
+        id: event.uuid,
         name: event.name,
         description: event.description ?? undefined,
         establishment_id: event.establishmentId,

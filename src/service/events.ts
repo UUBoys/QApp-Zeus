@@ -7,6 +7,15 @@ const getEvents = async () => {
   return events;
 };
 
+const getEventsForEstablishment = async (establishmentId: number) => {
+  const events = await prisma.event.findMany({
+    where: {
+      establishmentId,
+    },
+  });
+  return events;
+};
+
 const getEvent = async (uuid: string) => {
   const event = await prisma.event
     .findUnique({
@@ -107,6 +116,7 @@ const updateEvent = async (
 
 export default {
   getEvents,
+  getEventsForEstablishment,
   getEvent,
   createEvent,
   updateEvent,

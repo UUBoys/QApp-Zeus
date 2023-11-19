@@ -18,7 +18,7 @@ const getEventsForEstablishment = async (establishmentId: number) => {
 
 const getEvent = async (uuid: string) => {
   const event = await prisma.event
-    .findUnique({
+    .findUniqueOrThrow({
       where: {
         uuid,
       },

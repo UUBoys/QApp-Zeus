@@ -122,6 +122,21 @@ export default (router: ConnectRouter) => {
         }),
       };
     },
+    async getEvent({ id }) {
+      const event = await EventService.getEvent(id);
+
+      return {
+        id: event.uuid,
+        name: event.name,
+        description: event.description ?? undefined,
+        establishmentId: event.establishmentId,
+        image: event.image ?? undefined,
+        startDate: event.start_date.toISOString(),
+        endDate: event.end_date.toISOString(),
+        price: event.price,
+        maximumCapacity: event.maximumCapacity,
+      };
+    },
     async createEvent({
       name,
       description,
@@ -141,6 +156,18 @@ export default (router: ConnectRouter) => {
         price,
         description,
         image
+      );
+
+      const ticketPurchaseRequest = new com.qapp.hermes.CreateEventTicketsRequest({
+        event_id: event.uuid,
+        price: price,
+        quantity: maximumCapacity,
+      });
+
+      await grpcToPromise<com.qapp.hermes.CreateEventTicketsResponse>(
+        (callback) => {
+          client.CreateEventTickets(ticketPurchaseRequest, callback);
+        }
       );
 
       return {

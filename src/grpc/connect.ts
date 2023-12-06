@@ -146,6 +146,7 @@ export default (router: ConnectRouter) => {
       price,
       maximumCapacity,
       image,
+      ticketName,
     }) {
       const event = await EventService.createEvent(
         name,
@@ -162,6 +163,7 @@ export default (router: ConnectRouter) => {
         event_id: event.uuid,
         price: price,
         quantity: maximumCapacity,
+        ticket_name: ticketName,
       });
 
       await grpcToPromise<com.qapp.hermes.CreateEventTicketsResponse>(

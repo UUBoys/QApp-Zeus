@@ -226,6 +226,86 @@ export class TicketPurchaseResult extends Message<TicketPurchaseResult> {
 }
 
 /**
+ * @generated from message com.qapp.zeus.IsManagerOfEstablishmentRequest
+ */
+export class IsManagerOfEstablishmentRequest extends Message<IsManagerOfEstablishmentRequest> {
+  /**
+   * @generated from field: int32 userId = 1;
+   */
+  userId = 0;
+
+  /**
+   * @generated from field: int32 establishmentId = 2;
+   */
+  establishmentId = 0;
+
+  constructor(data?: PartialMessage<IsManagerOfEstablishmentRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "com.qapp.zeus.IsManagerOfEstablishmentRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "userId", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "establishmentId", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): IsManagerOfEstablishmentRequest {
+    return new IsManagerOfEstablishmentRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): IsManagerOfEstablishmentRequest {
+    return new IsManagerOfEstablishmentRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): IsManagerOfEstablishmentRequest {
+    return new IsManagerOfEstablishmentRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: IsManagerOfEstablishmentRequest | PlainMessage<IsManagerOfEstablishmentRequest> | undefined, b: IsManagerOfEstablishmentRequest | PlainMessage<IsManagerOfEstablishmentRequest> | undefined): boolean {
+    return proto3.util.equals(IsManagerOfEstablishmentRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message com.qapp.zeus.IsManagerOfEstablishmentResponse
+ */
+export class IsManagerOfEstablishmentResponse extends Message<IsManagerOfEstablishmentResponse> {
+  /**
+   * @generated from field: bool isManager = 1;
+   */
+  isManager = false;
+
+  constructor(data?: PartialMessage<IsManagerOfEstablishmentResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "com.qapp.zeus.IsManagerOfEstablishmentResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "isManager", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): IsManagerOfEstablishmentResponse {
+    return new IsManagerOfEstablishmentResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): IsManagerOfEstablishmentResponse {
+    return new IsManagerOfEstablishmentResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): IsManagerOfEstablishmentResponse {
+    return new IsManagerOfEstablishmentResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: IsManagerOfEstablishmentResponse | PlainMessage<IsManagerOfEstablishmentResponse> | undefined, b: IsManagerOfEstablishmentResponse | PlainMessage<IsManagerOfEstablishmentResponse> | undefined): boolean {
+    return proto3.util.equals(IsManagerOfEstablishmentResponse, a, b);
+  }
+}
+
+/**
  * @generated from message com.qapp.zeus.GetEventRequest
  */
 export class GetEventRequest extends Message<GetEventRequest> {
@@ -736,6 +816,11 @@ export class CreateEventRequest extends Message<CreateEventRequest> {
    */
   maximumCapacity = 0;
 
+  /**
+   * @generated from field: string ticketName = 9;
+   */
+  ticketName = "";
+
   constructor(data?: PartialMessage<CreateEventRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -752,6 +837,7 @@ export class CreateEventRequest extends Message<CreateEventRequest> {
     { no: 6, name: "price", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
     { no: 7, name: "establishmentId", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 8, name: "maximumCapacity", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 9, name: "ticketName", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateEventRequest {

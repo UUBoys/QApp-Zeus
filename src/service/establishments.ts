@@ -187,10 +187,28 @@ const setEstablishmentRole = async (
     });
 };
 
+const isModerator = async (userId: number, establishmentId: number) => {
+  const moderator = await prisma.moderators.findUnique({
+    where: {
+      user_id_establishment_id: {
+        user_id: userId,
+        establishment_id: establishmentId,
+      },
+    },
+  });
+
+  if (moderator === null) {
+    return false;
+  }
+
+  return true;
+};
+
 export default {
   getEstablishments,
   getEstablishment,
   getEstablishmentForUser,
+  isModerator,
   createEstablishment,
   updateEstablishment,
   setEstablishmentRole,

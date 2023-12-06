@@ -153,8 +153,8 @@ export default (router: ConnectRouter) => {
         establishmentId,
         new Date(startDate),
         new Date(endData),
-        maximumCapacity,
         price,
+        maximumCapacity,
         description,
         image
       );
@@ -182,6 +182,16 @@ export default (router: ConnectRouter) => {
         endDate: event.end_date.toISOString(),
         price: event.price,
         maximumCapacity: event.maximumCapacity,
+      };
+    },
+    async isManagerOfEstablishment({ userId, establishmentId }) {
+      const isManager = await EstablishmentService.isModerator(
+        userId,
+        establishmentId
+      );
+
+      return {
+        isManager: isManager,
       };
     },
     async setEstablishmentRole({ updaterId, establishmentId, userId, role }) {

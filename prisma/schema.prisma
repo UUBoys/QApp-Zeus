@@ -49,21 +49,7 @@ model Event {
   establishmentId String
   maximumCapacity Int
   establishment   Establishment @relation(fields: [establishmentId], references: [id])
-  Ticket          Ticket[]
 
-  @@schema("qapp_zeus")
-}
-
-model Ticket {
-  uuid      String   @id @default(uuid())
-  userId    String
-  eventId   String
-  revoked   Boolean
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  event     Event    @relation(fields: [eventId], references: [uuid])
-
-  @@unique([userId, eventId])
   @@schema("qapp_zeus")
 }
 

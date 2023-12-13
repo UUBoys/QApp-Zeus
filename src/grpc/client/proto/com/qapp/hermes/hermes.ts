@@ -6,6 +6,140 @@
 import * as pb_1 from "google-protobuf";
 import * as grpc_1 from "@grpc/grpc-js";
 export namespace com.qapp.hermes {
+    export class RemoveEventTicketsRequest extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            event_id?: string;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("event_id" in data && data.event_id != undefined) {
+                    this.event_id = data.event_id;
+                }
+            }
+        }
+        get event_id() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set event_id(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        static fromObject(data: {
+            event_id?: string;
+        }): RemoveEventTicketsRequest {
+            const message = new RemoveEventTicketsRequest({});
+            if (data.event_id != null) {
+                message.event_id = data.event_id;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                event_id?: string;
+            } = {};
+            if (this.event_id != null) {
+                data.event_id = this.event_id;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.event_id.length)
+                writer.writeString(1, this.event_id);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): RemoveEventTicketsRequest {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new RemoveEventTicketsRequest();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.event_id = reader.readString();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): RemoveEventTicketsRequest {
+            return RemoveEventTicketsRequest.deserialize(bytes);
+        }
+    }
+    export class RemoveEventTicketsResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            success?: boolean;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("success" in data && data.success != undefined) {
+                    this.success = data.success;
+                }
+            }
+        }
+        get success() {
+            return pb_1.Message.getFieldWithDefault(this, 1, false) as boolean;
+        }
+        set success(value: boolean) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        static fromObject(data: {
+            success?: boolean;
+        }): RemoveEventTicketsResponse {
+            const message = new RemoveEventTicketsResponse({});
+            if (data.success != null) {
+                message.success = data.success;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                success?: boolean;
+            } = {};
+            if (this.success != null) {
+                data.success = this.success;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.success != false)
+                writer.writeBool(1, this.success);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): RemoveEventTicketsResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new RemoveEventTicketsResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.success = reader.readBool();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): RemoveEventTicketsResponse {
+            return RemoveEventTicketsResponse.deserialize(bytes);
+        }
+    }
     export class GetEventAvailableTicketsResponse extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
@@ -1605,6 +1739,15 @@ export namespace com.qapp.hermes {
                 requestDeserialize: (bytes: Buffer) => GetUserTicketsRequest.deserialize(new Uint8Array(bytes)),
                 responseSerialize: (message: GetUserTicketsResponse) => Buffer.from(message.serialize()),
                 responseDeserialize: (bytes: Buffer) => GetUserTicketsResponse.deserialize(new Uint8Array(bytes))
+            },
+            RemoveEventTickets: {
+                path: "/com.qapp.hermes.CreditService/RemoveEventTickets",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: RemoveEventTicketsRequest) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => RemoveEventTicketsRequest.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: RemoveEventTicketsResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => RemoveEventTicketsResponse.deserialize(new Uint8Array(bytes))
             }
         };
         [method: string]: grpc_1.UntypedHandleCall;
@@ -1615,6 +1758,7 @@ export namespace com.qapp.hermes {
         abstract GetEventAvailableTickets(call: grpc_1.ServerUnaryCall<GetEventAvailableTicketsRequest, GetEventAvailableTicketsResponse>, callback: grpc_1.sendUnaryData<GetEventAvailableTicketsResponse>): void;
         abstract GetAllTickets(call: grpc_1.ServerUnaryCall<GetAllTIcketsRequest, GetAllTicketsResponse>, callback: grpc_1.sendUnaryData<GetAllTicketsResponse>): void;
         abstract GetUserTickets(call: grpc_1.ServerUnaryCall<GetUserTicketsRequest, GetUserTicketsResponse>, callback: grpc_1.sendUnaryData<GetUserTicketsResponse>): void;
+        abstract RemoveEventTickets(call: grpc_1.ServerUnaryCall<RemoveEventTicketsRequest, RemoveEventTicketsResponse>, callback: grpc_1.sendUnaryData<RemoveEventTicketsResponse>): void;
     }
     export class CreditServiceClient extends grpc_1.makeGenericClientConstructor(UnimplementedCreditServiceService.definition, "CreditService", {}) {
         constructor(address: string, credentials: grpc_1.ChannelCredentials, options?: Partial<grpc_1.ChannelOptions>) {
@@ -1640,6 +1784,9 @@ export namespace com.qapp.hermes {
         };
         GetUserTickets: GrpcUnaryServiceInterface<GetUserTicketsRequest, GetUserTicketsResponse> = (message: GetUserTicketsRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<GetUserTicketsResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<GetUserTicketsResponse>, callback?: grpc_1.requestCallback<GetUserTicketsResponse>): grpc_1.ClientUnaryCall => {
             return super.GetUserTickets(message, metadata, options, callback);
+        };
+        RemoveEventTickets: GrpcUnaryServiceInterface<RemoveEventTicketsRequest, RemoveEventTicketsResponse> = (message: RemoveEventTicketsRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<RemoveEventTicketsResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<RemoveEventTicketsResponse>, callback?: grpc_1.requestCallback<RemoveEventTicketsResponse>): grpc_1.ClientUnaryCall => {
+            return super.RemoveEventTickets(message, metadata, options, callback);
         };
     }
 }

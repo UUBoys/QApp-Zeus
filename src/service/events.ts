@@ -114,10 +114,42 @@ const updateEvent = async (
         });
 };
 
+const removeEvent = async (updater_id: string, establishment_id: string, uuid: string) => {
+    //Check if user can delete
+    const updater = await prisma.moderators.findUnique({
+        where: {
+            user_id_establishment_id: {
+                user_id: updater_id,
+                establishment_id: establishment_id,
+            }
+        },
+    }).catch((e) => {
+        logger.error(e);
+        throw new ConnectError("Internal prisma error", Code.Internal);
+    });
+
+    if(!updater || updater.role !== "MANAGER") {
+        throw new ConnectError("User not allowed to delete event", Code.PermissionDenied);
+    }
+
+    return await prisma.event.delete({
+        where: {
+            uuid: uuid,
+        },
+    }).catch((e) => {
+        if (e.code === "P2025") {
+            throw new ConnectError("Event not found", Code.NotFound);
+        }
+        logger.error(e);
+        throw new ConnectError("Internal prisma error", Code.Internal);
+    });
+}
+
 export default {
   getEvents,
   getEventsForEstablishment,
   getEvent,
   createEvent,
   updateEvent,
+  removeEvent,
 } as const;

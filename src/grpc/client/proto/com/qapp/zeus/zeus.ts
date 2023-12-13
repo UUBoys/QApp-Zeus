@@ -686,6 +686,232 @@ export namespace com.qapp.zeus {
             return TicketPurchaseResult.deserialize(bytes);
         }
     }
+    export class RemoveEventRequest extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            updaterId?: string;
+            establishmentId?: string;
+            eventId?: string;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("updaterId" in data && data.updaterId != undefined) {
+                    this.updaterId = data.updaterId;
+                }
+                if ("establishmentId" in data && data.establishmentId != undefined) {
+                    this.establishmentId = data.establishmentId;
+                }
+                if ("eventId" in data && data.eventId != undefined) {
+                    this.eventId = data.eventId;
+                }
+            }
+        }
+        get updaterId() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set updaterId(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get establishmentId() {
+            return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
+        }
+        set establishmentId(value: string) {
+            pb_1.Message.setField(this, 2, value);
+        }
+        get eventId() {
+            return pb_1.Message.getFieldWithDefault(this, 3, "") as string;
+        }
+        set eventId(value: string) {
+            pb_1.Message.setField(this, 3, value);
+        }
+        static fromObject(data: {
+            updaterId?: string;
+            establishmentId?: string;
+            eventId?: string;
+        }): RemoveEventRequest {
+            const message = new RemoveEventRequest({});
+            if (data.updaterId != null) {
+                message.updaterId = data.updaterId;
+            }
+            if (data.establishmentId != null) {
+                message.establishmentId = data.establishmentId;
+            }
+            if (data.eventId != null) {
+                message.eventId = data.eventId;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                updaterId?: string;
+                establishmentId?: string;
+                eventId?: string;
+            } = {};
+            if (this.updaterId != null) {
+                data.updaterId = this.updaterId;
+            }
+            if (this.establishmentId != null) {
+                data.establishmentId = this.establishmentId;
+            }
+            if (this.eventId != null) {
+                data.eventId = this.eventId;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.updaterId.length)
+                writer.writeString(1, this.updaterId);
+            if (this.establishmentId.length)
+                writer.writeString(2, this.establishmentId);
+            if (this.eventId.length)
+                writer.writeString(3, this.eventId);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): RemoveEventRequest {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new RemoveEventRequest();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.updaterId = reader.readString();
+                        break;
+                    case 2:
+                        message.establishmentId = reader.readString();
+                        break;
+                    case 3:
+                        message.eventId = reader.readString();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): RemoveEventRequest {
+            return RemoveEventRequest.deserialize(bytes);
+        }
+    }
+    export class RemoveEventResponse extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            establishmentId?: string;
+            eventId?: string;
+            removed?: boolean;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("establishmentId" in data && data.establishmentId != undefined) {
+                    this.establishmentId = data.establishmentId;
+                }
+                if ("eventId" in data && data.eventId != undefined) {
+                    this.eventId = data.eventId;
+                }
+                if ("removed" in data && data.removed != undefined) {
+                    this.removed = data.removed;
+                }
+            }
+        }
+        get establishmentId() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set establishmentId(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        get eventId() {
+            return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
+        }
+        set eventId(value: string) {
+            pb_1.Message.setField(this, 2, value);
+        }
+        get removed() {
+            return pb_1.Message.getFieldWithDefault(this, 3, false) as boolean;
+        }
+        set removed(value: boolean) {
+            pb_1.Message.setField(this, 3, value);
+        }
+        static fromObject(data: {
+            establishmentId?: string;
+            eventId?: string;
+            removed?: boolean;
+        }): RemoveEventResponse {
+            const message = new RemoveEventResponse({});
+            if (data.establishmentId != null) {
+                message.establishmentId = data.establishmentId;
+            }
+            if (data.eventId != null) {
+                message.eventId = data.eventId;
+            }
+            if (data.removed != null) {
+                message.removed = data.removed;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                establishmentId?: string;
+                eventId?: string;
+                removed?: boolean;
+            } = {};
+            if (this.establishmentId != null) {
+                data.establishmentId = this.establishmentId;
+            }
+            if (this.eventId != null) {
+                data.eventId = this.eventId;
+            }
+            if (this.removed != null) {
+                data.removed = this.removed;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.establishmentId.length)
+                writer.writeString(1, this.establishmentId);
+            if (this.eventId.length)
+                writer.writeString(2, this.eventId);
+            if (this.removed != false)
+                writer.writeBool(3, this.removed);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): RemoveEventResponse {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new RemoveEventResponse();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.establishmentId = reader.readString();
+                        break;
+                    case 2:
+                        message.eventId = reader.readString();
+                        break;
+                    case 3:
+                        message.removed = reader.readBool();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): RemoveEventResponse {
+            return RemoveEventResponse.deserialize(bytes);
+        }
+    }
     export class IsManagerOfEstablishmentRequest extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
@@ -3292,6 +3518,15 @@ export namespace com.qapp.zeus {
                 requestDeserialize: (bytes: Buffer) => IsManagerOfEstablishmentRequest.deserialize(new Uint8Array(bytes)),
                 responseSerialize: (message: IsManagerOfEstablishmentResponse) => Buffer.from(message.serialize()),
                 responseDeserialize: (bytes: Buffer) => IsManagerOfEstablishmentResponse.deserialize(new Uint8Array(bytes))
+            },
+            RemoveEvent: {
+                path: "/com.qapp.zeus.Zeus/RemoveEvent",
+                requestStream: false,
+                responseStream: false,
+                requestSerialize: (message: RemoveEventRequest) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => RemoveEventRequest.deserialize(new Uint8Array(bytes)),
+                responseSerialize: (message: RemoveEventResponse) => Buffer.from(message.serialize()),
+                responseDeserialize: (bytes: Buffer) => RemoveEventResponse.deserialize(new Uint8Array(bytes))
             }
         };
         [method: string]: grpc_1.UntypedHandleCall;
@@ -3309,6 +3544,7 @@ export namespace com.qapp.zeus {
         abstract GetEstablishment(call: grpc_1.ServerUnaryCall<GetEstablishmentRequest, Establishment>, callback: grpc_1.sendUnaryData<Establishment>): void;
         abstract GetEstablishmentForUser(call: grpc_1.ServerUnaryCall<GetEstablishmentsForUserRequest, GetEstablishmentsResponse>, callback: grpc_1.sendUnaryData<GetEstablishmentsResponse>): void;
         abstract IsManagerOfEstablishment(call: grpc_1.ServerUnaryCall<IsManagerOfEstablishmentRequest, IsManagerOfEstablishmentResponse>, callback: grpc_1.sendUnaryData<IsManagerOfEstablishmentResponse>): void;
+        abstract RemoveEvent(call: grpc_1.ServerUnaryCall<RemoveEventRequest, RemoveEventResponse>, callback: grpc_1.sendUnaryData<RemoveEventResponse>): void;
     }
     export class ZeusClient extends grpc_1.makeGenericClientConstructor(UnimplementedZeusService.definition, "Zeus", {}) {
         constructor(address: string, credentials: grpc_1.ChannelCredentials, options?: Partial<grpc_1.ChannelOptions>) {
@@ -3355,6 +3591,9 @@ export namespace com.qapp.zeus {
         };
         IsManagerOfEstablishment: GrpcUnaryServiceInterface<IsManagerOfEstablishmentRequest, IsManagerOfEstablishmentResponse> = (message: IsManagerOfEstablishmentRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<IsManagerOfEstablishmentResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<IsManagerOfEstablishmentResponse>, callback?: grpc_1.requestCallback<IsManagerOfEstablishmentResponse>): grpc_1.ClientUnaryCall => {
             return super.IsManagerOfEstablishment(message, metadata, options, callback);
+        };
+        RemoveEvent: GrpcUnaryServiceInterface<RemoveEventRequest, RemoveEventResponse> = (message: RemoveEventRequest, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<RemoveEventResponse>, options?: grpc_1.CallOptions | grpc_1.requestCallback<RemoveEventResponse>, callback?: grpc_1.requestCallback<RemoveEventResponse>): grpc_1.ClientUnaryCall => {
+            return super.RemoveEvent(message, metadata, options, callback);
         };
     }
 }

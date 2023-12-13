@@ -226,6 +226,104 @@ export class TicketPurchaseResult extends Message<TicketPurchaseResult> {
 }
 
 /**
+ * @generated from message com.qapp.zeus.RemoveEventRequest
+ */
+export class RemoveEventRequest extends Message<RemoveEventRequest> {
+  /**
+   * @generated from field: string updaterId = 1;
+   */
+  updaterId = "";
+
+  /**
+   * @generated from field: string establishmentId = 2;
+   */
+  establishmentId = "";
+
+  /**
+   * @generated from field: string eventId = 3;
+   */
+  eventId = "";
+
+  constructor(data?: PartialMessage<RemoveEventRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "com.qapp.zeus.RemoveEventRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "updaterId", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "establishmentId", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "eventId", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RemoveEventRequest {
+    return new RemoveEventRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RemoveEventRequest {
+    return new RemoveEventRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RemoveEventRequest {
+    return new RemoveEventRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RemoveEventRequest | PlainMessage<RemoveEventRequest> | undefined, b: RemoveEventRequest | PlainMessage<RemoveEventRequest> | undefined): boolean {
+    return proto3.util.equals(RemoveEventRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message com.qapp.zeus.RemoveEventResponse
+ */
+export class RemoveEventResponse extends Message<RemoveEventResponse> {
+  /**
+   * @generated from field: string establishmentId = 1;
+   */
+  establishmentId = "";
+
+  /**
+   * @generated from field: string eventId = 2;
+   */
+  eventId = "";
+
+  /**
+   * @generated from field: bool removed = 3;
+   */
+  removed = false;
+
+  constructor(data?: PartialMessage<RemoveEventResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "com.qapp.zeus.RemoveEventResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "establishmentId", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "eventId", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "removed", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RemoveEventResponse {
+    return new RemoveEventResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RemoveEventResponse {
+    return new RemoveEventResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RemoveEventResponse {
+    return new RemoveEventResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RemoveEventResponse | PlainMessage<RemoveEventResponse> | undefined, b: RemoveEventResponse | PlainMessage<RemoveEventResponse> | undefined): boolean {
+    return proto3.util.equals(RemoveEventResponse, a, b);
+  }
+}
+
+/**
  * @generated from message com.qapp.zeus.IsManagerOfEstablishmentRequest
  */
 export class IsManagerOfEstablishmentRequest extends Message<IsManagerOfEstablishmentRequest> {

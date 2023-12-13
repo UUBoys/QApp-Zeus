@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreateEstablishmentRequest, CreateEventRequest, Establishment, Event, GetEstablishmentRequest, GetEstablishmentsForUserRequest, GetEstablishmentsRequest, GetEstablishmentsResponse, GetEventRequest, GetEventsForEstablishmentRequest, GetEventsRequest, GetEventsResponse, IsManagerOfEstablishmentRequest, IsManagerOfEstablishmentResponse, PurchaseTicketRequest, RefundTicketRequest, RefundTicketResponse, SetEstablishmentRoleRequest, SetEstablishmentRoleResponse, TicketPurchaseResult, UpdateEstablishmentRequest, UpdateEventRequest } from "./zeus_pb";
+import { CreateEstablishmentRequest, CreateEventRequest, Establishment, Event, GetEstablishmentRequest, GetEstablishmentsForUserRequest, GetEstablishmentsRequest, GetEstablishmentsResponse, GetEventRequest, GetEventsForEstablishmentRequest, GetEventsRequest, GetEventsResponse, IsManagerOfEstablishmentRequest, IsManagerOfEstablishmentResponse, PurchaseTicketRequest, RefundTicketRequest, RefundTicketResponse, RemoveEventRequest, RemoveEventResponse, SetEstablishmentRoleRequest, SetEstablishmentRoleResponse, TicketPurchaseResult, UpdateEstablishmentRequest, UpdateEventRequest } from "./zeus_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -136,6 +136,15 @@ export const Zeus = {
       name: "IsManagerOfEstablishment",
       I: IsManagerOfEstablishmentRequest,
       O: IsManagerOfEstablishmentResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc com.qapp.zeus.Zeus.RemoveEvent
+     */
+    removeEvent: {
+      name: "RemoveEvent",
+      I: RemoveEventRequest,
+      O: RemoveEventResponse,
       kind: MethodKind.Unary,
     },
   }

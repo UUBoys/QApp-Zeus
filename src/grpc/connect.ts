@@ -321,5 +321,26 @@ export default (router: ConnectRouter) => {
         id: ticketPurchase.Ticket.id,
       };
     },
+    async removeEvent({ updaterId, establishmentId, eventId }) {
+      const removedEvent = await EventService.removeEvent(updaterId, establishmentId, eventId);
+
+      const removeTickets = new com.qapp.hermes.RemoveEventTicketsRequest({
+        event_id: eventId,
+      });
+
+      const removeTicketsResponse = await grpcToPromise<com.qapp.hermes.RemoveEventTicketsResponse>(
+        (callback) => {
+          client.RemoveEventTickets(removeTickets, callback);
+        }
+      );
+
+      if(!removeTicketsResponse.success) {
+        logger.error("Failed to remove tickets for event", eventId);
+      }
+
+      return {
+        eventId: removedEvent.uuid,
+      };
+    },
   });
 };

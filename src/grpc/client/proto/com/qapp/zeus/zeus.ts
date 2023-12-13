@@ -3003,10 +3003,9 @@ export namespace com.qapp.zeus {
         }
     }
     export class UpdateEventRequest extends pb_1.Message {
-        #one_of_decls: number[][] = [[4], [5], [6], [7], [8], [9], [10]];
+        #one_of_decls: number[][] = [[3], [4], [5], [6], [7], [8], [9]];
         constructor(data?: any[] | ({
             updaterId?: string;
-            establishmentId?: string;
             uuid?: string;
         } & (({
             name?: string;
@@ -3028,9 +3027,6 @@ export namespace com.qapp.zeus {
             if (!Array.isArray(data) && typeof data == "object") {
                 if ("updaterId" in data && data.updaterId != undefined) {
                     this.updaterId = data.updaterId;
-                }
-                if ("establishmentId" in data && data.establishmentId != undefined) {
-                    this.establishmentId = data.establishmentId;
                 }
                 if ("uuid" in data && data.uuid != undefined) {
                     this.uuid = data.uuid;
@@ -3064,147 +3060,140 @@ export namespace com.qapp.zeus {
         set updaterId(value: string) {
             pb_1.Message.setField(this, 1, value);
         }
-        get establishmentId() {
+        get uuid() {
             return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
         }
-        set establishmentId(value: string) {
+        set uuid(value: string) {
             pb_1.Message.setField(this, 2, value);
         }
-        get uuid() {
+        get name() {
             return pb_1.Message.getFieldWithDefault(this, 3, "") as string;
         }
-        set uuid(value: string) {
-            pb_1.Message.setField(this, 3, value);
-        }
-        get name() {
-            return pb_1.Message.getFieldWithDefault(this, 4, "") as string;
-        }
         set name(value: string) {
-            pb_1.Message.setOneofField(this, 4, this.#one_of_decls[0], value);
+            pb_1.Message.setOneofField(this, 3, this.#one_of_decls[0], value);
         }
         get has_name() {
-            return pb_1.Message.getField(this, 4) != null;
+            return pb_1.Message.getField(this, 3) != null;
         }
         get description() {
-            return pb_1.Message.getFieldWithDefault(this, 5, "") as string;
+            return pb_1.Message.getFieldWithDefault(this, 4, "") as string;
         }
         set description(value: string) {
-            pb_1.Message.setOneofField(this, 5, this.#one_of_decls[1], value);
+            pb_1.Message.setOneofField(this, 4, this.#one_of_decls[1], value);
         }
         get has_description() {
-            return pb_1.Message.getField(this, 5) != null;
+            return pb_1.Message.getField(this, 4) != null;
         }
         get start_date() {
-            return pb_1.Message.getFieldWithDefault(this, 6, "") as string;
+            return pb_1.Message.getFieldWithDefault(this, 5, "") as string;
         }
         set start_date(value: string) {
-            pb_1.Message.setOneofField(this, 6, this.#one_of_decls[2], value);
+            pb_1.Message.setOneofField(this, 5, this.#one_of_decls[2], value);
         }
         get has_start_date() {
-            return pb_1.Message.getField(this, 6) != null;
+            return pb_1.Message.getField(this, 5) != null;
         }
         get end_date() {
-            return pb_1.Message.getFieldWithDefault(this, 7, "") as string;
+            return pb_1.Message.getFieldWithDefault(this, 6, "") as string;
         }
         set end_date(value: string) {
-            pb_1.Message.setOneofField(this, 7, this.#one_of_decls[3], value);
+            pb_1.Message.setOneofField(this, 6, this.#one_of_decls[3], value);
         }
         get has_end_date() {
-            return pb_1.Message.getField(this, 7) != null;
+            return pb_1.Message.getField(this, 6) != null;
         }
         get image() {
-            return pb_1.Message.getFieldWithDefault(this, 8, "") as string;
+            return pb_1.Message.getFieldWithDefault(this, 7, "") as string;
         }
         set image(value: string) {
-            pb_1.Message.setOneofField(this, 8, this.#one_of_decls[4], value);
+            pb_1.Message.setOneofField(this, 7, this.#one_of_decls[4], value);
         }
         get has_image() {
-            return pb_1.Message.getField(this, 8) != null;
+            return pb_1.Message.getField(this, 7) != null;
         }
         get price() {
-            return pb_1.Message.getFieldWithDefault(this, 9, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 8, 0) as number;
         }
         set price(value: number) {
-            pb_1.Message.setOneofField(this, 9, this.#one_of_decls[5], value);
+            pb_1.Message.setOneofField(this, 8, this.#one_of_decls[5], value);
         }
         get has_price() {
-            return pb_1.Message.getField(this, 9) != null;
+            return pb_1.Message.getField(this, 8) != null;
         }
         get maximumCapacity() {
-            return pb_1.Message.getFieldWithDefault(this, 10, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 9, 0) as number;
         }
         set maximumCapacity(value: number) {
-            pb_1.Message.setOneofField(this, 10, this.#one_of_decls[6], value);
+            pb_1.Message.setOneofField(this, 9, this.#one_of_decls[6], value);
         }
         get has_maximumCapacity() {
-            return pb_1.Message.getField(this, 10) != null;
+            return pb_1.Message.getField(this, 9) != null;
         }
         get _name() {
             const cases: {
                 [index: number]: "none" | "name";
             } = {
                 0: "none",
-                4: "name"
+                3: "name"
             };
-            return cases[pb_1.Message.computeOneofCase(this, [4])];
+            return cases[pb_1.Message.computeOneofCase(this, [3])];
         }
         get _description() {
             const cases: {
                 [index: number]: "none" | "description";
             } = {
                 0: "none",
-                5: "description"
+                4: "description"
             };
-            return cases[pb_1.Message.computeOneofCase(this, [5])];
+            return cases[pb_1.Message.computeOneofCase(this, [4])];
         }
         get _start_date() {
             const cases: {
                 [index: number]: "none" | "start_date";
             } = {
                 0: "none",
-                6: "start_date"
+                5: "start_date"
             };
-            return cases[pb_1.Message.computeOneofCase(this, [6])];
+            return cases[pb_1.Message.computeOneofCase(this, [5])];
         }
         get _end_date() {
             const cases: {
                 [index: number]: "none" | "end_date";
             } = {
                 0: "none",
-                7: "end_date"
+                6: "end_date"
             };
-            return cases[pb_1.Message.computeOneofCase(this, [7])];
+            return cases[pb_1.Message.computeOneofCase(this, [6])];
         }
         get _image() {
             const cases: {
                 [index: number]: "none" | "image";
             } = {
                 0: "none",
-                8: "image"
+                7: "image"
             };
-            return cases[pb_1.Message.computeOneofCase(this, [8])];
+            return cases[pb_1.Message.computeOneofCase(this, [7])];
         }
         get _price() {
             const cases: {
                 [index: number]: "none" | "price";
             } = {
                 0: "none",
-                9: "price"
+                8: "price"
             };
-            return cases[pb_1.Message.computeOneofCase(this, [9])];
+            return cases[pb_1.Message.computeOneofCase(this, [8])];
         }
         get _maximumCapacity() {
             const cases: {
                 [index: number]: "none" | "maximumCapacity";
             } = {
                 0: "none",
-                10: "maximumCapacity"
+                9: "maximumCapacity"
             };
-            return cases[pb_1.Message.computeOneofCase(this, [10])];
+            return cases[pb_1.Message.computeOneofCase(this, [9])];
         }
         static fromObject(data: {
             updaterId?: string;
-            establishmentId?: string;
             uuid?: string;
             name?: string;
             description?: string;
@@ -3217,9 +3206,6 @@ export namespace com.qapp.zeus {
             const message = new UpdateEventRequest({});
             if (data.updaterId != null) {
                 message.updaterId = data.updaterId;
-            }
-            if (data.establishmentId != null) {
-                message.establishmentId = data.establishmentId;
             }
             if (data.uuid != null) {
                 message.uuid = data.uuid;
@@ -3250,7 +3236,6 @@ export namespace com.qapp.zeus {
         toObject() {
             const data: {
                 updaterId?: string;
-                establishmentId?: string;
                 uuid?: string;
                 name?: string;
                 description?: string;
@@ -3262,9 +3247,6 @@ export namespace com.qapp.zeus {
             } = {};
             if (this.updaterId != null) {
                 data.updaterId = this.updaterId;
-            }
-            if (this.establishmentId != null) {
-                data.establishmentId = this.establishmentId;
             }
             if (this.uuid != null) {
                 data.uuid = this.uuid;
@@ -3298,24 +3280,22 @@ export namespace com.qapp.zeus {
             const writer = w || new pb_1.BinaryWriter();
             if (this.updaterId.length)
                 writer.writeString(1, this.updaterId);
-            if (this.establishmentId.length)
-                writer.writeString(2, this.establishmentId);
             if (this.uuid.length)
-                writer.writeString(3, this.uuid);
+                writer.writeString(2, this.uuid);
             if (this.has_name)
-                writer.writeString(4, this.name);
+                writer.writeString(3, this.name);
             if (this.has_description)
-                writer.writeString(5, this.description);
+                writer.writeString(4, this.description);
             if (this.has_start_date)
-                writer.writeString(6, this.start_date);
+                writer.writeString(5, this.start_date);
             if (this.has_end_date)
-                writer.writeString(7, this.end_date);
+                writer.writeString(6, this.end_date);
             if (this.has_image)
-                writer.writeString(8, this.image);
+                writer.writeString(7, this.image);
             if (this.has_price)
-                writer.writeFloat(9, this.price);
+                writer.writeFloat(8, this.price);
             if (this.has_maximumCapacity)
-                writer.writeInt32(10, this.maximumCapacity);
+                writer.writeInt32(9, this.maximumCapacity);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -3329,30 +3309,27 @@ export namespace com.qapp.zeus {
                         message.updaterId = reader.readString();
                         break;
                     case 2:
-                        message.establishmentId = reader.readString();
-                        break;
-                    case 3:
                         message.uuid = reader.readString();
                         break;
-                    case 4:
+                    case 3:
                         message.name = reader.readString();
                         break;
-                    case 5:
+                    case 4:
                         message.description = reader.readString();
                         break;
-                    case 6:
+                    case 5:
                         message.start_date = reader.readString();
                         break;
-                    case 7:
+                    case 6:
                         message.end_date = reader.readString();
                         break;
-                    case 8:
+                    case 7:
                         message.image = reader.readString();
                         break;
-                    case 9:
+                    case 8:
                         message.price = reader.readFloat();
                         break;
-                    case 10:
+                    case 9:
                         message.maximumCapacity = reader.readInt32();
                         break;
                     default: reader.skipField();

@@ -1191,47 +1191,42 @@ export class UpdateEventRequest extends Message<UpdateEventRequest> {
   updaterId = "";
 
   /**
-   * @generated from field: string establishmentId = 2;
-   */
-  establishmentId = "";
-
-  /**
-   * @generated from field: string uuid = 3;
+   * @generated from field: string uuid = 2;
    */
   uuid = "";
 
   /**
-   * @generated from field: optional string name = 4;
+   * @generated from field: optional string name = 3;
    */
   name?: string;
 
   /**
-   * @generated from field: optional string description = 5;
+   * @generated from field: optional string description = 4;
    */
   description?: string;
 
   /**
-   * @generated from field: optional string start_date = 6;
+   * @generated from field: optional string start_date = 5;
    */
   startDate?: string;
 
   /**
-   * @generated from field: optional string end_date = 7;
+   * @generated from field: optional string end_date = 6;
    */
   endDate?: string;
 
   /**
-   * @generated from field: optional string image = 8;
+   * @generated from field: optional string image = 7;
    */
   image?: string;
 
   /**
-   * @generated from field: optional float price = 9;
+   * @generated from field: optional float price = 8;
    */
   price?: number;
 
   /**
-   * @generated from field: optional int32 maximumCapacity = 10;
+   * @generated from field: optional int32 maximumCapacity = 9;
    */
   maximumCapacity?: number;
 
@@ -1244,15 +1239,14 @@ export class UpdateEventRequest extends Message<UpdateEventRequest> {
   static readonly typeName = "com.qapp.zeus.UpdateEventRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "updaterId", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "establishmentId", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "uuid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
-    { no: 5, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
-    { no: 6, name: "start_date", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
-    { no: 7, name: "end_date", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
-    { no: 8, name: "image", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
-    { no: 9, name: "price", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true },
-    { no: 10, name: "maximumCapacity", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "uuid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 4, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 5, name: "start_date", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 6, name: "end_date", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 7, name: "image", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 8, name: "price", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true },
+    { no: 9, name: "maximumCapacity", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdateEventRequest {

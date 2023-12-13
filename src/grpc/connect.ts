@@ -223,12 +223,12 @@ export default (router: ConnectRouter) => {
         updaterId,
         id,
         name,
+        description,
         street,
         city,
         country,
         coverImage,
-        profileImage,
-        description
+        profileImage
       );
 
       return {

@@ -255,15 +255,15 @@ export default (router: ConnectRouter) => {
       maximumCapacity,
     }) {
       const event = await EventService.updateEvent(
-        updaterId,
-        uuid,
-        name,
-        description,
-        startDate,
-        endDate,
-        image,
-        price,
-        maximumCapacity
+        updaterId = updaterId,
+        uuid = uuid,
+        name = name,
+        description = description,
+        startDate = startDate,
+        endDate = endDate,
+        image = image,
+        price = price,
+        maximumCapacity = maximumCapacity
       );
 
       return {

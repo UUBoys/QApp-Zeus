@@ -128,7 +128,22 @@ const updateEvent = async (
         });
 };
 
-const removeEvent = async (updater_id: string, establishment_id: string, uuid: string) => {
+const removeEvent = async (updater_id: string, event_id: string) => {
+    const establishment_id = await prisma.event.findUnique({
+      where: {
+          uuid: event_id,
+      },
+      select: {
+          establishmentId: true,
+      },
+  }).catch((e) => { 
+      if (e.code === "P2025") {
+          throw new ConnectError("Event not found", Code.NotFound);
+      }
+      logger.error(e);
+      throw new ConnectError("Internal prisma error", Code.Internal);
+  }).then((e) => e?.establishmentId) as string;
+
     //Check if user can delete
     const updater = await prisma.moderators.findUnique({
         where: {
@@ -148,7 +163,7 @@ const removeEvent = async (updater_id: string, establishment_id: string, uuid: s
 
     return await prisma.event.delete({
         where: {
-            uuid: uuid,
+            uuid: event_id,
         },
     }).catch((e) => {
         if (e.code === "P2025") {

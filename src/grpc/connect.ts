@@ -319,8 +319,8 @@ export default (router: ConnectRouter) => {
         id: ticketPurchase.Ticket.id,
       };
     },
-    async removeEvent({ updaterId, establishmentId, eventId }) {
-      const removedEvent = await EventService.removeEvent(updaterId, establishmentId, eventId);
+    async removeEvent({ updaterId, eventId }) {
+      const removedEvent = await EventService.removeEvent(updaterId, eventId);
 
       const removeTickets = new com.qapp.hermes.RemoveEventTicketsRequest({
         event_id: eventId,
@@ -337,7 +337,7 @@ export default (router: ConnectRouter) => {
       }
 
       return {
-        establishmentId: establishmentId,
+        establishmentId: removedEvent.establishmentId,
         eventId: eventId,
         removed: true,
       };

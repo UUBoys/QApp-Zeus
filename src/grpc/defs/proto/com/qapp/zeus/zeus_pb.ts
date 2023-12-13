@@ -235,12 +235,7 @@ export class RemoveEventRequest extends Message<RemoveEventRequest> {
   updaterId = "";
 
   /**
-   * @generated from field: string establishmentId = 2;
-   */
-  establishmentId = "";
-
-  /**
-   * @generated from field: string eventId = 3;
+   * @generated from field: string eventId = 2;
    */
   eventId = "";
 
@@ -253,8 +248,7 @@ export class RemoveEventRequest extends Message<RemoveEventRequest> {
   static readonly typeName = "com.qapp.zeus.RemoveEventRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "updaterId", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "establishmentId", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "eventId", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "eventId", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RemoveEventRequest {

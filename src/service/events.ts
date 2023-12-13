@@ -65,7 +65,6 @@ const createEvent = async (
 
 const updateEvent = async (
   updater_id: string,
-  establishment_id: string,
   uuid: string,
   name?: string,
   description?: string,
@@ -75,6 +74,21 @@ const updateEvent = async (
   price?: number,
   maximumCapacity?: number
 ) => {
+    const establishment_id = await prisma.event.findUnique({
+        where: {
+            uuid: uuid,
+        },
+        select: {
+            establishmentId: true,
+        },
+    }).catch((e) => { 
+        if (e.code === "P2025") {
+            throw new ConnectError("Event not found", Code.NotFound);
+        }
+        logger.error(e);
+        throw new ConnectError("Internal prisma error", Code.Internal);
+    }).then((e) => e?.establishmentId) as string;
+
     //Check if user can update
     const updater = await prisma.moderators.findUnique({
         where: {

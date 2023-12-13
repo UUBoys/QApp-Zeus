@@ -245,7 +245,6 @@ export default (router: ConnectRouter) => {
     },
     async updateEvent({
       updaterId,
-      establishmentId,
       uuid,
       name,
       description,
@@ -257,7 +256,6 @@ export default (router: ConnectRouter) => {
     }) {
       const event = await EventService.updateEvent(
         updaterId,
-        establishmentId,
         uuid,
         name,
         description,

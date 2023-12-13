@@ -337,7 +337,9 @@ export default (router: ConnectRouter) => {
       }
 
       return {
-        eventId: removedEvent.uuid,
+        establishmentId: establishmentId,
+        eventId: eventId,
+        removed: true,
       };
     },
   });

@@ -13,8 +13,8 @@ datasource db {
 }
 
 model Establishment {
-  id          Int          @id @default(autoincrement())
-  ownerId     Int
+  id          String          @id @default(uuid())
+  ownerId     String
   name        String
   description String?
   profileImage       String?
@@ -29,9 +29,9 @@ model Establishment {
 }
 
 model Moderators {
-  user_id          Int
+  user_id          String
   role             Role
-  establishment_id Int
+  establishment_id String
   establishment    Establishment @relation(fields: [establishment_id], references: [id])
 
   @@unique([user_id, establishment_id])
@@ -46,7 +46,7 @@ model Event {
   end_date        DateTime
   image           String?
   price           Float
-  establishmentId Int
+  establishmentId String
   maximumCapacity Int
   establishment   Establishment @relation(fields: [establishmentId], references: [id])
   Ticket          Ticket[]
@@ -56,7 +56,7 @@ model Event {
 
 model Ticket {
   uuid      String   @id @default(uuid())
-  userId    Int
+  userId    String
   eventId   String
   revoked   Boolean
   createdAt DateTime @default(now())

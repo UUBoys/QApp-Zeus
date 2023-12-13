@@ -7,7 +7,7 @@ const getEvents = async () => {
   return events;
 };
 
-const getEventsForEstablishment = async (establishmentId: number) => {
+const getEventsForEstablishment = async (establishmentId: string) => {
   const events = await prisma.event.findMany({
     where: {
       establishmentId,
@@ -35,7 +35,7 @@ const getEvent = async (uuid: string) => {
 
 const createEvent = async (
   name: string,
-  establishmentId: number,
+  establishmentId: string,
   start_date: Date,
   end_date: Date,
   price: number,
@@ -64,8 +64,8 @@ const createEvent = async (
 };
 
 const updateEvent = async (
-  updater_id: number,
-  establishment_id: number,
+  updater_id: string,
+  establishment_id: string,
   uuid: string,
   name?: string,
   description?: string,

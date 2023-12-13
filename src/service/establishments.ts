@@ -10,7 +10,7 @@ const getEstablishments = async () => {
   });
 };
 
-const getEstablishment = async (id: number) => {
+const getEstablishment = async (id: string) => {
   return await prisma.establishment
     .findUnique({
       where: {
@@ -26,7 +26,7 @@ const getEstablishment = async (id: number) => {
     });
 };
 
-const getEstablishmentForUser = async (userId: number) => {
+const getEstablishmentForUser = async (userId: string) => {
   return await prisma.establishment.findMany({
     where: {
       ownerId: userId,
@@ -35,7 +35,7 @@ const getEstablishmentForUser = async (userId: number) => {
 };
 
 const createEstablishment = async (
-  ownerId: number,
+  ownerId: string,
   name: string,
   street: string,
   city: string,
@@ -79,8 +79,8 @@ const createEstablishment = async (
 };
 
 const updateEstablishment = async (
-  updater_id: number,
-  establishment_id: number,
+  updater_id: string,
+  establishment_id: string,
   name?: string,
   description?: string,
   street?: string,
@@ -131,9 +131,9 @@ const updateEstablishment = async (
 };
 
 const setEstablishmentRole = async (
-  updater_id: number,
-  establishmentId: number,
-  userId: number,
+  updater_id: string,
+  establishmentId: string,
+  userId: string,
   role: string
 ) => {
   // Validate role to prisma enum
@@ -187,7 +187,7 @@ const setEstablishmentRole = async (
     });
 };
 
-const isModerator = async (userId: number, establishmentId: number) => {
+const isModerator = async (userId: string, establishmentId: string) => {
   const moderator = await prisma.moderators.findUnique({
     where: {
       user_id_establishment_id: {

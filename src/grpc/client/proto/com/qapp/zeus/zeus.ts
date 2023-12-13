@@ -9,7 +9,7 @@ export namespace com.qapp.zeus {
     export class Establishment extends pb_1.Message {
         #one_of_decls: number[][] = [[3], [4], [5]];
         constructor(data?: any[] | ({
-            id?: number;
+            id?: string;
             name?: string;
             street?: string;
             city?: string;
@@ -51,9 +51,9 @@ export namespace com.qapp.zeus {
             }
         }
         get id() {
-            return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
         }
-        set id(value: number) {
+        set id(value: string) {
             pb_1.Message.setField(this, 1, value);
         }
         get name() {
@@ -135,7 +135,7 @@ export namespace com.qapp.zeus {
             return cases[pb_1.Message.computeOneofCase(this, [5])];
         }
         static fromObject(data: {
-            id?: number;
+            id?: string;
             name?: string;
             description?: string;
             profileImage?: string;
@@ -173,7 +173,7 @@ export namespace com.qapp.zeus {
         }
         toObject() {
             const data: {
-                id?: number;
+                id?: string;
                 name?: string;
                 description?: string;
                 profileImage?: string;
@@ -212,8 +212,8 @@ export namespace com.qapp.zeus {
         serialize(w: pb_1.BinaryWriter): void;
         serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
             const writer = w || new pb_1.BinaryWriter();
-            if (this.id != 0)
-                writer.writeInt32(1, this.id);
+            if (this.id.length)
+                writer.writeString(1, this.id);
             if (this.name.length)
                 writer.writeString(2, this.name);
             if (this.has_description)
@@ -238,7 +238,7 @@ export namespace com.qapp.zeus {
                     break;
                 switch (reader.getFieldNumber()) {
                     case 1:
-                        message.id = reader.readInt32();
+                        message.id = reader.readString();
                         break;
                     case 2:
                         message.name = reader.readString();
@@ -281,7 +281,7 @@ export namespace com.qapp.zeus {
             start_date?: string;
             end_date?: string;
             price?: number;
-            establishment_id?: number;
+            establishment_id?: string;
             maximumCapacity?: number;
         } & (({
             description?: string;
@@ -369,9 +369,9 @@ export namespace com.qapp.zeus {
             pb_1.Message.setField(this, 7, value);
         }
         get establishment_id() {
-            return pb_1.Message.getFieldWithDefault(this, 8, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 8, "") as string;
         }
-        set establishment_id(value: number) {
+        set establishment_id(value: string) {
             pb_1.Message.setField(this, 8, value);
         }
         get maximumCapacity() {
@@ -406,7 +406,7 @@ export namespace com.qapp.zeus {
             end_date?: string;
             image?: string;
             price?: number;
-            establishment_id?: number;
+            establishment_id?: string;
             maximumCapacity?: number;
         }): Event {
             const message = new Event({});
@@ -448,7 +448,7 @@ export namespace com.qapp.zeus {
                 end_date?: string;
                 image?: string;
                 price?: number;
-                establishment_id?: number;
+                establishment_id?: string;
                 maximumCapacity?: number;
             } = {};
             if (this.id != null) {
@@ -498,8 +498,8 @@ export namespace com.qapp.zeus {
                 writer.writeString(6, this.image);
             if (this.price != 0)
                 writer.writeFloat(7, this.price);
-            if (this.establishment_id != 0)
-                writer.writeInt32(8, this.establishment_id);
+            if (this.establishment_id.length)
+                writer.writeString(8, this.establishment_id);
             if (this.maximumCapacity != 0)
                 writer.writeInt32(9, this.maximumCapacity);
             if (!w)
@@ -533,7 +533,7 @@ export namespace com.qapp.zeus {
                         message.price = reader.readFloat();
                         break;
                     case 8:
-                        message.establishment_id = reader.readInt32();
+                        message.establishment_id = reader.readString();
                         break;
                     case 9:
                         message.maximumCapacity = reader.readInt32();
@@ -553,8 +553,8 @@ export namespace com.qapp.zeus {
     export class TicketPurchaseResult extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
-            id?: number;
-            user_id?: number;
+            id?: string;
+            user_id?: string;
             event_id?: string;
             new_balance?: number;
         }) {
@@ -576,15 +576,15 @@ export namespace com.qapp.zeus {
             }
         }
         get id() {
-            return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
         }
-        set id(value: number) {
+        set id(value: string) {
             pb_1.Message.setField(this, 1, value);
         }
         get user_id() {
-            return pb_1.Message.getFieldWithDefault(this, 2, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
         }
-        set user_id(value: number) {
+        set user_id(value: string) {
             pb_1.Message.setField(this, 2, value);
         }
         get event_id() {
@@ -600,8 +600,8 @@ export namespace com.qapp.zeus {
             pb_1.Message.setField(this, 4, value);
         }
         static fromObject(data: {
-            id?: number;
-            user_id?: number;
+            id?: string;
+            user_id?: string;
             event_id?: string;
             new_balance?: number;
         }): TicketPurchaseResult {
@@ -622,8 +622,8 @@ export namespace com.qapp.zeus {
         }
         toObject() {
             const data: {
-                id?: number;
-                user_id?: number;
+                id?: string;
+                user_id?: string;
                 event_id?: string;
                 new_balance?: number;
             } = {};
@@ -645,10 +645,10 @@ export namespace com.qapp.zeus {
         serialize(w: pb_1.BinaryWriter): void;
         serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
             const writer = w || new pb_1.BinaryWriter();
-            if (this.id != 0)
-                writer.writeInt32(1, this.id);
-            if (this.user_id != 0)
-                writer.writeInt32(2, this.user_id);
+            if (this.id.length)
+                writer.writeString(1, this.id);
+            if (this.user_id.length)
+                writer.writeString(2, this.user_id);
             if (this.event_id.length)
                 writer.writeString(3, this.event_id);
             if (this.new_balance != 0)
@@ -663,10 +663,10 @@ export namespace com.qapp.zeus {
                     break;
                 switch (reader.getFieldNumber()) {
                     case 1:
-                        message.id = reader.readInt32();
+                        message.id = reader.readString();
                         break;
                     case 2:
-                        message.user_id = reader.readInt32();
+                        message.user_id = reader.readString();
                         break;
                     case 3:
                         message.event_id = reader.readString();
@@ -689,8 +689,8 @@ export namespace com.qapp.zeus {
     export class IsManagerOfEstablishmentRequest extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
-            userId?: number;
-            establishmentId?: number;
+            userId?: string;
+            establishmentId?: string;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -704,20 +704,20 @@ export namespace com.qapp.zeus {
             }
         }
         get userId() {
-            return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
         }
-        set userId(value: number) {
+        set userId(value: string) {
             pb_1.Message.setField(this, 1, value);
         }
         get establishmentId() {
-            return pb_1.Message.getFieldWithDefault(this, 2, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
         }
-        set establishmentId(value: number) {
+        set establishmentId(value: string) {
             pb_1.Message.setField(this, 2, value);
         }
         static fromObject(data: {
-            userId?: number;
-            establishmentId?: number;
+            userId?: string;
+            establishmentId?: string;
         }): IsManagerOfEstablishmentRequest {
             const message = new IsManagerOfEstablishmentRequest({});
             if (data.userId != null) {
@@ -730,8 +730,8 @@ export namespace com.qapp.zeus {
         }
         toObject() {
             const data: {
-                userId?: number;
-                establishmentId?: number;
+                userId?: string;
+                establishmentId?: string;
             } = {};
             if (this.userId != null) {
                 data.userId = this.userId;
@@ -745,10 +745,10 @@ export namespace com.qapp.zeus {
         serialize(w: pb_1.BinaryWriter): void;
         serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
             const writer = w || new pb_1.BinaryWriter();
-            if (this.userId != 0)
-                writer.writeInt32(1, this.userId);
-            if (this.establishmentId != 0)
-                writer.writeInt32(2, this.establishmentId);
+            if (this.userId.length)
+                writer.writeString(1, this.userId);
+            if (this.establishmentId.length)
+                writer.writeString(2, this.establishmentId);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -759,10 +759,10 @@ export namespace com.qapp.zeus {
                     break;
                 switch (reader.getFieldNumber()) {
                     case 1:
-                        message.userId = reader.readInt32();
+                        message.userId = reader.readString();
                         break;
                     case 2:
-                        message.establishmentId = reader.readInt32();
+                        message.establishmentId = reader.readString();
                         break;
                     default: reader.skipField();
                 }
@@ -953,7 +953,7 @@ export namespace com.qapp.zeus {
     export class GetEstablishmentsForUserRequest extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
-            userId?: number;
+            userId?: string;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -964,13 +964,13 @@ export namespace com.qapp.zeus {
             }
         }
         get userId() {
-            return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
         }
-        set userId(value: number) {
+        set userId(value: string) {
             pb_1.Message.setField(this, 1, value);
         }
         static fromObject(data: {
-            userId?: number;
+            userId?: string;
         }): GetEstablishmentsForUserRequest {
             const message = new GetEstablishmentsForUserRequest({});
             if (data.userId != null) {
@@ -980,7 +980,7 @@ export namespace com.qapp.zeus {
         }
         toObject() {
             const data: {
-                userId?: number;
+                userId?: string;
             } = {};
             if (this.userId != null) {
                 data.userId = this.userId;
@@ -991,8 +991,8 @@ export namespace com.qapp.zeus {
         serialize(w: pb_1.BinaryWriter): void;
         serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
             const writer = w || new pb_1.BinaryWriter();
-            if (this.userId != 0)
-                writer.writeInt32(1, this.userId);
+            if (this.userId.length)
+                writer.writeString(1, this.userId);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -1003,7 +1003,7 @@ export namespace com.qapp.zeus {
                     break;
                 switch (reader.getFieldNumber()) {
                     case 1:
-                        message.userId = reader.readInt32();
+                        message.userId = reader.readString();
                         break;
                     default: reader.skipField();
                 }
@@ -1060,7 +1060,7 @@ export namespace com.qapp.zeus {
     export class GetEventsForEstablishmentRequest extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
-            establishmentId?: number;
+            establishmentId?: string;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -1071,13 +1071,13 @@ export namespace com.qapp.zeus {
             }
         }
         get establishmentId() {
-            return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
         }
-        set establishmentId(value: number) {
+        set establishmentId(value: string) {
             pb_1.Message.setField(this, 1, value);
         }
         static fromObject(data: {
-            establishmentId?: number;
+            establishmentId?: string;
         }): GetEventsForEstablishmentRequest {
             const message = new GetEventsForEstablishmentRequest({});
             if (data.establishmentId != null) {
@@ -1087,7 +1087,7 @@ export namespace com.qapp.zeus {
         }
         toObject() {
             const data: {
-                establishmentId?: number;
+                establishmentId?: string;
             } = {};
             if (this.establishmentId != null) {
                 data.establishmentId = this.establishmentId;
@@ -1098,8 +1098,8 @@ export namespace com.qapp.zeus {
         serialize(w: pb_1.BinaryWriter): void;
         serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
             const writer = w || new pb_1.BinaryWriter();
-            if (this.establishmentId != 0)
-                writer.writeInt32(1, this.establishmentId);
+            if (this.establishmentId.length)
+                writer.writeString(1, this.establishmentId);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -1110,7 +1110,7 @@ export namespace com.qapp.zeus {
                     break;
                 switch (reader.getFieldNumber()) {
                     case 1:
-                        message.establishmentId = reader.readInt32();
+                        message.establishmentId = reader.readString();
                         break;
                     default: reader.skipField();
                 }
@@ -1127,7 +1127,7 @@ export namespace com.qapp.zeus {
     export class GetEstablishmentRequest extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
-            id?: number;
+            id?: string;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -1138,13 +1138,13 @@ export namespace com.qapp.zeus {
             }
         }
         get id() {
-            return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
         }
-        set id(value: number) {
+        set id(value: string) {
             pb_1.Message.setField(this, 1, value);
         }
         static fromObject(data: {
-            id?: number;
+            id?: string;
         }): GetEstablishmentRequest {
             const message = new GetEstablishmentRequest({});
             if (data.id != null) {
@@ -1154,7 +1154,7 @@ export namespace com.qapp.zeus {
         }
         toObject() {
             const data: {
-                id?: number;
+                id?: string;
             } = {};
             if (this.id != null) {
                 data.id = this.id;
@@ -1165,8 +1165,8 @@ export namespace com.qapp.zeus {
         serialize(w: pb_1.BinaryWriter): void;
         serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
             const writer = w || new pb_1.BinaryWriter();
-            if (this.id != 0)
-                writer.writeInt32(1, this.id);
+            if (this.id.length)
+                writer.writeString(1, this.id);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -1177,7 +1177,7 @@ export namespace com.qapp.zeus {
                     break;
                 switch (reader.getFieldNumber()) {
                     case 1:
-                        message.id = reader.readInt32();
+                        message.id = reader.readString();
                         break;
                     default: reader.skipField();
                 }
@@ -1265,7 +1265,7 @@ export namespace com.qapp.zeus {
             street?: string;
             city?: string;
             country?: string;
-            ownerId?: number;
+            ownerId?: string;
         } & (({
             description?: string;
         }) | ({
@@ -1354,9 +1354,9 @@ export namespace com.qapp.zeus {
             pb_1.Message.setField(this, 7, value);
         }
         get ownerId() {
-            return pb_1.Message.getFieldWithDefault(this, 8, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 8, "") as string;
         }
-        set ownerId(value: number) {
+        set ownerId(value: string) {
             pb_1.Message.setField(this, 8, value);
         }
         get _description() {
@@ -1394,7 +1394,7 @@ export namespace com.qapp.zeus {
             street?: string;
             city?: string;
             country?: string;
-            ownerId?: number;
+            ownerId?: string;
         }): CreateEstablishmentRequest {
             const message = new CreateEstablishmentRequest({});
             if (data.name != null) {
@@ -1432,7 +1432,7 @@ export namespace com.qapp.zeus {
                 street?: string;
                 city?: string;
                 country?: string;
-                ownerId?: number;
+                ownerId?: string;
             } = {};
             if (this.name != null) {
                 data.name = this.name;
@@ -1478,8 +1478,8 @@ export namespace com.qapp.zeus {
                 writer.writeString(6, this.city);
             if (this.country.length)
                 writer.writeString(7, this.country);
-            if (this.ownerId != 0)
-                writer.writeInt32(8, this.ownerId);
+            if (this.ownerId.length)
+                writer.writeString(8, this.ownerId);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -1511,7 +1511,7 @@ export namespace com.qapp.zeus {
                         message.country = reader.readString();
                         break;
                     case 8:
-                        message.ownerId = reader.readInt32();
+                        message.ownerId = reader.readString();
                         break;
                     default: reader.skipField();
                 }
@@ -1528,9 +1528,9 @@ export namespace com.qapp.zeus {
     export class SetEstablishmentRoleRequest extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
-            updaterId?: number;
-            establishmentId?: number;
-            userId?: number;
+            updaterId?: string;
+            establishmentId?: string;
+            userId?: string;
             role?: string;
         }) {
             super();
@@ -1551,21 +1551,21 @@ export namespace com.qapp.zeus {
             }
         }
         get updaterId() {
-            return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
         }
-        set updaterId(value: number) {
+        set updaterId(value: string) {
             pb_1.Message.setField(this, 1, value);
         }
         get establishmentId() {
-            return pb_1.Message.getFieldWithDefault(this, 2, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
         }
-        set establishmentId(value: number) {
+        set establishmentId(value: string) {
             pb_1.Message.setField(this, 2, value);
         }
         get userId() {
-            return pb_1.Message.getFieldWithDefault(this, 3, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 3, "") as string;
         }
-        set userId(value: number) {
+        set userId(value: string) {
             pb_1.Message.setField(this, 3, value);
         }
         get role() {
@@ -1575,9 +1575,9 @@ export namespace com.qapp.zeus {
             pb_1.Message.setField(this, 4, value);
         }
         static fromObject(data: {
-            updaterId?: number;
-            establishmentId?: number;
-            userId?: number;
+            updaterId?: string;
+            establishmentId?: string;
+            userId?: string;
             role?: string;
         }): SetEstablishmentRoleRequest {
             const message = new SetEstablishmentRoleRequest({});
@@ -1597,9 +1597,9 @@ export namespace com.qapp.zeus {
         }
         toObject() {
             const data: {
-                updaterId?: number;
-                establishmentId?: number;
-                userId?: number;
+                updaterId?: string;
+                establishmentId?: string;
+                userId?: string;
                 role?: string;
             } = {};
             if (this.updaterId != null) {
@@ -1620,12 +1620,12 @@ export namespace com.qapp.zeus {
         serialize(w: pb_1.BinaryWriter): void;
         serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
             const writer = w || new pb_1.BinaryWriter();
-            if (this.updaterId != 0)
-                writer.writeInt32(1, this.updaterId);
-            if (this.establishmentId != 0)
-                writer.writeInt32(2, this.establishmentId);
-            if (this.userId != 0)
-                writer.writeInt32(3, this.userId);
+            if (this.updaterId.length)
+                writer.writeString(1, this.updaterId);
+            if (this.establishmentId.length)
+                writer.writeString(2, this.establishmentId);
+            if (this.userId.length)
+                writer.writeString(3, this.userId);
             if (this.role.length)
                 writer.writeString(4, this.role);
             if (!w)
@@ -1638,13 +1638,13 @@ export namespace com.qapp.zeus {
                     break;
                 switch (reader.getFieldNumber()) {
                     case 1:
-                        message.updaterId = reader.readInt32();
+                        message.updaterId = reader.readString();
                         break;
                     case 2:
-                        message.establishmentId = reader.readInt32();
+                        message.establishmentId = reader.readString();
                         break;
                     case 3:
-                        message.userId = reader.readInt32();
+                        message.userId = reader.readString();
                         break;
                     case 4:
                         message.role = reader.readString();
@@ -1664,8 +1664,8 @@ export namespace com.qapp.zeus {
     export class SetEstablishmentRoleResponse extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
-            establishmentId?: number;
-            userId?: number;
+            establishmentId?: string;
+            userId?: string;
             role?: string;
         }) {
             super();
@@ -1683,15 +1683,15 @@ export namespace com.qapp.zeus {
             }
         }
         get establishmentId() {
-            return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
         }
-        set establishmentId(value: number) {
+        set establishmentId(value: string) {
             pb_1.Message.setField(this, 1, value);
         }
         get userId() {
-            return pb_1.Message.getFieldWithDefault(this, 2, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
         }
-        set userId(value: number) {
+        set userId(value: string) {
             pb_1.Message.setField(this, 2, value);
         }
         get role() {
@@ -1701,8 +1701,8 @@ export namespace com.qapp.zeus {
             pb_1.Message.setField(this, 3, value);
         }
         static fromObject(data: {
-            establishmentId?: number;
-            userId?: number;
+            establishmentId?: string;
+            userId?: string;
             role?: string;
         }): SetEstablishmentRoleResponse {
             const message = new SetEstablishmentRoleResponse({});
@@ -1719,8 +1719,8 @@ export namespace com.qapp.zeus {
         }
         toObject() {
             const data: {
-                establishmentId?: number;
-                userId?: number;
+                establishmentId?: string;
+                userId?: string;
                 role?: string;
             } = {};
             if (this.establishmentId != null) {
@@ -1738,10 +1738,10 @@ export namespace com.qapp.zeus {
         serialize(w: pb_1.BinaryWriter): void;
         serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
             const writer = w || new pb_1.BinaryWriter();
-            if (this.establishmentId != 0)
-                writer.writeInt32(1, this.establishmentId);
-            if (this.userId != 0)
-                writer.writeInt32(2, this.userId);
+            if (this.establishmentId.length)
+                writer.writeString(1, this.establishmentId);
+            if (this.userId.length)
+                writer.writeString(2, this.userId);
             if (this.role.length)
                 writer.writeString(3, this.role);
             if (!w)
@@ -1754,10 +1754,10 @@ export namespace com.qapp.zeus {
                     break;
                 switch (reader.getFieldNumber()) {
                     case 1:
-                        message.establishmentId = reader.readInt32();
+                        message.establishmentId = reader.readString();
                         break;
                     case 2:
-                        message.userId = reader.readInt32();
+                        message.userId = reader.readString();
                         break;
                     case 3:
                         message.role = reader.readString();
@@ -1848,7 +1848,7 @@ export namespace com.qapp.zeus {
             start_date?: string;
             end_data?: string;
             price?: number;
-            establishmentId?: number;
+            establishmentId?: string;
             maximumCapacity?: number;
             ticketName?: string;
         } & (({
@@ -1931,9 +1931,9 @@ export namespace com.qapp.zeus {
             pb_1.Message.setField(this, 6, value);
         }
         get establishmentId() {
-            return pb_1.Message.getFieldWithDefault(this, 7, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 7, "") as string;
         }
-        set establishmentId(value: number) {
+        set establishmentId(value: string) {
             pb_1.Message.setField(this, 7, value);
         }
         get maximumCapacity() {
@@ -1973,7 +1973,7 @@ export namespace com.qapp.zeus {
             end_data?: string;
             image?: string;
             price?: number;
-            establishmentId?: number;
+            establishmentId?: string;
             maximumCapacity?: number;
             ticketName?: string;
         }): CreateEventRequest {
@@ -2015,7 +2015,7 @@ export namespace com.qapp.zeus {
                 end_data?: string;
                 image?: string;
                 price?: number;
-                establishmentId?: number;
+                establishmentId?: string;
                 maximumCapacity?: number;
                 ticketName?: string;
             } = {};
@@ -2064,8 +2064,8 @@ export namespace com.qapp.zeus {
                 writer.writeString(5, this.image);
             if (this.price != 0)
                 writer.writeFloat(6, this.price);
-            if (this.establishmentId != 0)
-                writer.writeInt32(7, this.establishmentId);
+            if (this.establishmentId.length)
+                writer.writeString(7, this.establishmentId);
             if (this.maximumCapacity != 0)
                 writer.writeInt32(8, this.maximumCapacity);
             if (this.ticketName.length)
@@ -2098,7 +2098,7 @@ export namespace com.qapp.zeus {
                         message.price = reader.readFloat();
                         break;
                     case 7:
-                        message.establishmentId = reader.readInt32();
+                        message.establishmentId = reader.readString();
                         break;
                     case 8:
                         message.maximumCapacity = reader.readInt32();
@@ -2122,8 +2122,8 @@ export namespace com.qapp.zeus {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
             eventId?: string;
-            ticketId?: number;
-            userId?: number;
+            ticketId?: string;
+            userId?: string;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -2146,21 +2146,21 @@ export namespace com.qapp.zeus {
             pb_1.Message.setField(this, 1, value);
         }
         get ticketId() {
-            return pb_1.Message.getFieldWithDefault(this, 2, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
         }
-        set ticketId(value: number) {
+        set ticketId(value: string) {
             pb_1.Message.setField(this, 2, value);
         }
         get userId() {
-            return pb_1.Message.getFieldWithDefault(this, 3, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 3, "") as string;
         }
-        set userId(value: number) {
+        set userId(value: string) {
             pb_1.Message.setField(this, 3, value);
         }
         static fromObject(data: {
             eventId?: string;
-            ticketId?: number;
-            userId?: number;
+            ticketId?: string;
+            userId?: string;
         }): PurchaseTicketRequest {
             const message = new PurchaseTicketRequest({});
             if (data.eventId != null) {
@@ -2177,8 +2177,8 @@ export namespace com.qapp.zeus {
         toObject() {
             const data: {
                 eventId?: string;
-                ticketId?: number;
-                userId?: number;
+                ticketId?: string;
+                userId?: string;
             } = {};
             if (this.eventId != null) {
                 data.eventId = this.eventId;
@@ -2197,10 +2197,10 @@ export namespace com.qapp.zeus {
             const writer = w || new pb_1.BinaryWriter();
             if (this.eventId.length)
                 writer.writeString(1, this.eventId);
-            if (this.ticketId != 0)
-                writer.writeInt32(2, this.ticketId);
-            if (this.userId != 0)
-                writer.writeInt32(3, this.userId);
+            if (this.ticketId.length)
+                writer.writeString(2, this.ticketId);
+            if (this.userId.length)
+                writer.writeString(3, this.userId);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -2214,10 +2214,10 @@ export namespace com.qapp.zeus {
                         message.eventId = reader.readString();
                         break;
                     case 2:
-                        message.ticketId = reader.readInt32();
+                        message.ticketId = reader.readString();
                         break;
                     case 3:
-                        message.userId = reader.readInt32();
+                        message.userId = reader.readString();
                         break;
                     default: reader.skipField();
                 }
@@ -2235,7 +2235,7 @@ export namespace com.qapp.zeus {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
             uuid?: string;
-            userId?: number;
+            userId?: string;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -2255,14 +2255,14 @@ export namespace com.qapp.zeus {
             pb_1.Message.setField(this, 1, value);
         }
         get userId() {
-            return pb_1.Message.getFieldWithDefault(this, 2, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
         }
-        set userId(value: number) {
+        set userId(value: string) {
             pb_1.Message.setField(this, 2, value);
         }
         static fromObject(data: {
             uuid?: string;
-            userId?: number;
+            userId?: string;
         }): RefundTicketRequest {
             const message = new RefundTicketRequest({});
             if (data.uuid != null) {
@@ -2276,7 +2276,7 @@ export namespace com.qapp.zeus {
         toObject() {
             const data: {
                 uuid?: string;
-                userId?: number;
+                userId?: string;
             } = {};
             if (this.uuid != null) {
                 data.uuid = this.uuid;
@@ -2292,8 +2292,8 @@ export namespace com.qapp.zeus {
             const writer = w || new pb_1.BinaryWriter();
             if (this.uuid.length)
                 writer.writeString(1, this.uuid);
-            if (this.userId != 0)
-                writer.writeInt32(2, this.userId);
+            if (this.userId.length)
+                writer.writeString(2, this.userId);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -2307,7 +2307,7 @@ export namespace com.qapp.zeus {
                         message.uuid = reader.readString();
                         break;
                     case 2:
-                        message.userId = reader.readInt32();
+                        message.userId = reader.readString();
                         break;
                     default: reader.skipField();
                 }
@@ -2325,7 +2325,7 @@ export namespace com.qapp.zeus {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
             uuid?: string;
-            userId?: number;
+            userId?: string;
             revoked?: boolean;
         }) {
             super();
@@ -2349,9 +2349,9 @@ export namespace com.qapp.zeus {
             pb_1.Message.setField(this, 1, value);
         }
         get userId() {
-            return pb_1.Message.getFieldWithDefault(this, 2, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
         }
-        set userId(value: number) {
+        set userId(value: string) {
             pb_1.Message.setField(this, 2, value);
         }
         get revoked() {
@@ -2362,7 +2362,7 @@ export namespace com.qapp.zeus {
         }
         static fromObject(data: {
             uuid?: string;
-            userId?: number;
+            userId?: string;
             revoked?: boolean;
         }): RefundTicketResponse {
             const message = new RefundTicketResponse({});
@@ -2380,7 +2380,7 @@ export namespace com.qapp.zeus {
         toObject() {
             const data: {
                 uuid?: string;
-                userId?: number;
+                userId?: string;
                 revoked?: boolean;
             } = {};
             if (this.uuid != null) {
@@ -2400,8 +2400,8 @@ export namespace com.qapp.zeus {
             const writer = w || new pb_1.BinaryWriter();
             if (this.uuid.length)
                 writer.writeString(1, this.uuid);
-            if (this.userId != 0)
-                writer.writeInt32(2, this.userId);
+            if (this.userId.length)
+                writer.writeString(2, this.userId);
             if (this.revoked != false)
                 writer.writeBool(3, this.revoked);
             if (!w)
@@ -2417,7 +2417,7 @@ export namespace com.qapp.zeus {
                         message.uuid = reader.readString();
                         break;
                     case 2:
-                        message.userId = reader.readInt32();
+                        message.userId = reader.readString();
                         break;
                     case 3:
                         message.revoked = reader.readBool();
@@ -2437,8 +2437,8 @@ export namespace com.qapp.zeus {
     export class UpdateEstablishmentRequest extends pb_1.Message {
         #one_of_decls: number[][] = [[3], [4], [5], [6], [7], [8], [9]];
         constructor(data?: any[] | ({
-            updater_id?: number;
-            id?: number;
+            updater_id?: string;
+            id?: string;
         } & (({
             name?: string;
         }) | ({
@@ -2487,15 +2487,15 @@ export namespace com.qapp.zeus {
             }
         }
         get updater_id() {
-            return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
         }
-        set updater_id(value: number) {
+        set updater_id(value: string) {
             pb_1.Message.setField(this, 1, value);
         }
         get id() {
-            return pb_1.Message.getFieldWithDefault(this, 2, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
         }
-        set id(value: number) {
+        set id(value: string) {
             pb_1.Message.setField(this, 2, value);
         }
         get name() {
@@ -2625,8 +2625,8 @@ export namespace com.qapp.zeus {
             return cases[pb_1.Message.computeOneofCase(this, [9])];
         }
         static fromObject(data: {
-            updater_id?: number;
-            id?: number;
+            updater_id?: string;
+            id?: string;
             name?: string;
             description?: string;
             profileImage?: string;
@@ -2667,8 +2667,8 @@ export namespace com.qapp.zeus {
         }
         toObject() {
             const data: {
-                updater_id?: number;
-                id?: number;
+                updater_id?: string;
+                id?: string;
                 name?: string;
                 description?: string;
                 profileImage?: string;
@@ -2710,10 +2710,10 @@ export namespace com.qapp.zeus {
         serialize(w: pb_1.BinaryWriter): void;
         serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
             const writer = w || new pb_1.BinaryWriter();
-            if (this.updater_id != 0)
-                writer.writeInt32(1, this.updater_id);
-            if (this.id != 0)
-                writer.writeInt32(2, this.id);
+            if (this.updater_id.length)
+                writer.writeString(1, this.updater_id);
+            if (this.id.length)
+                writer.writeString(2, this.id);
             if (this.has_name)
                 writer.writeString(3, this.name);
             if (this.has_description)
@@ -2738,10 +2738,10 @@ export namespace com.qapp.zeus {
                     break;
                 switch (reader.getFieldNumber()) {
                     case 1:
-                        message.updater_id = reader.readInt32();
+                        message.updater_id = reader.readString();
                         break;
                     case 2:
-                        message.id = reader.readInt32();
+                        message.id = reader.readString();
                         break;
                     case 3:
                         message.name = reader.readString();
@@ -2779,8 +2779,8 @@ export namespace com.qapp.zeus {
     export class UpdateEventRequest extends pb_1.Message {
         #one_of_decls: number[][] = [[4], [5], [6], [7], [8], [9], [10]];
         constructor(data?: any[] | ({
-            updaterId?: number;
-            establishmentId?: number;
+            updaterId?: string;
+            establishmentId?: string;
             uuid?: string;
         } & (({
             name?: string;
@@ -2833,15 +2833,15 @@ export namespace com.qapp.zeus {
             }
         }
         get updaterId() {
-            return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
         }
-        set updaterId(value: number) {
+        set updaterId(value: string) {
             pb_1.Message.setField(this, 1, value);
         }
         get establishmentId() {
-            return pb_1.Message.getFieldWithDefault(this, 2, 0) as number;
+            return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
         }
-        set establishmentId(value: number) {
+        set establishmentId(value: string) {
             pb_1.Message.setField(this, 2, value);
         }
         get uuid() {
@@ -2977,8 +2977,8 @@ export namespace com.qapp.zeus {
             return cases[pb_1.Message.computeOneofCase(this, [10])];
         }
         static fromObject(data: {
-            updaterId?: number;
-            establishmentId?: number;
+            updaterId?: string;
+            establishmentId?: string;
             uuid?: string;
             name?: string;
             description?: string;
@@ -3023,8 +3023,8 @@ export namespace com.qapp.zeus {
         }
         toObject() {
             const data: {
-                updaterId?: number;
-                establishmentId?: number;
+                updaterId?: string;
+                establishmentId?: string;
                 uuid?: string;
                 name?: string;
                 description?: string;
@@ -3070,10 +3070,10 @@ export namespace com.qapp.zeus {
         serialize(w: pb_1.BinaryWriter): void;
         serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
             const writer = w || new pb_1.BinaryWriter();
-            if (this.updaterId != 0)
-                writer.writeInt32(1, this.updaterId);
-            if (this.establishmentId != 0)
-                writer.writeInt32(2, this.establishmentId);
+            if (this.updaterId.length)
+                writer.writeString(1, this.updaterId);
+            if (this.establishmentId.length)
+                writer.writeString(2, this.establishmentId);
             if (this.uuid.length)
                 writer.writeString(3, this.uuid);
             if (this.has_name)
@@ -3100,10 +3100,10 @@ export namespace com.qapp.zeus {
                     break;
                 switch (reader.getFieldNumber()) {
                     case 1:
-                        message.updaterId = reader.readInt32();
+                        message.updaterId = reader.readString();
                         break;
                     case 2:
-                        message.establishmentId = reader.readInt32();
+                        message.establishmentId = reader.readString();
                         break;
                     case 3:
                         message.uuid = reader.readString();
